@@ -40,10 +40,8 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-pages-artifact@v2
       with:
-        name: dist-without-markdown
-        path: |
-          dist
-          !dist/**/*.md
+        path: ./dist
+
   deploy:
     environment:
       name: github-pages
