@@ -2,7 +2,6 @@
 import Hex from "./Hex.vue";
 import {entries} from "../util/entries.json";
 import type {entry} from "../util/types.ts";
-defineProps<{ msg: string }>()
 
 function hexGrid(edgeLength: number){
   let len = 2*edgeLength - 1,
@@ -31,7 +30,6 @@ function getEntry(x :number, y :number) : entry {
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
   <template v-for="cell in cells">
     <hex :cell="cell" :entry="getEntry(cell.x,cell.y)" :highlight-g-m=undefined></hex>
   </template>
