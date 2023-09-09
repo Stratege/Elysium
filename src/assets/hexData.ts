@@ -1,4 +1,4 @@
-import {entry} from "../util/types";
+import type {entry} from "../util/types";
 
 export const realEntries : {[x:string] : entry} = {
   "10,10": {
