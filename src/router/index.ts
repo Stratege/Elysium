@@ -1,12 +1,12 @@
-import {RouteRecordRaw, createRouter, createWebHistory} from 'vue-router'
+import {RouteRecordRaw, createRouter, createWebHistory, createWebHashHistory} from 'vue-router'
 import HelloWorld from "../components/HelloWorld.vue";
 import Skilltree from "../components/Skilltree.vue";
 
 const routes: Array<RouteRecordRaw> = [
-  {path: '/Elysium/', name: 'Main', component: HelloWorld},
-  {path: '/Elysium/skills', name: 'Skills', component: Skilltree}
+  {path: '/', name: 'Main', component: HelloWorld},
+  {path: '/Skills', name: 'Skills', component: Skilltree}
 ]
 
-const router = createRouter({history: createWebHistory(), routes})
+const router = createRouter({history: createWebHashHistory(), routes})
 
 export default router
