@@ -1,4 +1,4 @@
-import {RouteRecordRaw, createRouter, createWebHistory, createWebHashHistory} from 'vue-router'
+import {RouteRecordRaw, createRouter, createWebHashHistory} from 'vue-router'
 import HelloWorld from "../components/HelloWorld.vue";
 import Skilltree from "../components/Skilltree.vue";
 
