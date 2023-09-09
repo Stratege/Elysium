@@ -10,4 +10,16 @@ type entry = {
   note?: string
 }
 
-export type { entry, GM }
+type SpecialResource = 'Soulstone' | 'Infused Wood' | 'Mindsteel'
+type Cost = {
+  kind : SpecialResource | 'All' | 'Any'
+  amount : number
+}
+type TreeNode<T> = {
+  x : number,
+  y : number,
+  name : string,
+  dependOn : string[],
+  elem : T,
+}
+export type { entry, GM, Cost, TreeNode }
