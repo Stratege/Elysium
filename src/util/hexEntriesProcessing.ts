@@ -1,4 +1,5 @@
-import {entry} from "./types.ts";
+import {entry} from "./types";
+import {realEntries} from "../assets/hexData";
 /*
 function dist(a : {x:number, y:number},b : {x:number, y:number}) : number {
   return Math.max(Math.abs(a.x-b.x),
@@ -37,38 +38,6 @@ function fix() {
       let e = realEntries[x + "," + y]
       entries[x][y] = e ?? { faction: 'Dungeon' } //fakeElemCalc(x, y)
     }
-  }
-}
-let realEntries : {[x:string] : entry} = {
-  "10,10": {
-    faction:"Dragon",
-    note: 'This is not dead that can eternally lie and with strange aeons, even death may die'
-  },
-  "5,5": {
-    faction: 'Cove',
-    building: 'HQ',
-    owningGM: "Minioris",
-    terrain: "Dungeonstone",
-  },
-  "5,20": {
-    faction: 'Nihi',
-    building: 'HQ',
-    owningGM: "Stratege",
-    terrain: "Dungeonstone",
-  },
-  "20,5": {
-    faction: 'Thul',
-    building: 'HQ',
-    owningGM: "Darthgorloc",
-    terrain: "Dungeonstone",
-  },
-  "5,19": {
-    faction: 'Dungeon',
-    owningGM: 'Stratege',
-  },
-  "6,19": {
-    faction: 'Nihi',
-    owningGM: 'Stratege',
   }
 }
 

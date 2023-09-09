@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Tree from "./Tree.vue";
 import SkillTreeEntry from "./SkillTreeEntry.vue";
-import {skillTree} from "../assets/skilltreedata";
+import {skillTree} from "../assets/skilltreeData";
 
 const w = 200
 const h = 200

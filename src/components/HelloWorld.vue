@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Hex from "./Hex.vue";
-import {entries} from "../util/entries.json";
+import {entries} from "../util/hexEntriesProcessing.ts";
 import type {entry} from "../util/types.ts";
 
 function hexGrid(edgeLength: number){

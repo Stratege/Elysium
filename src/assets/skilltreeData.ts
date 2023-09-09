@@ -1,4 +1,4 @@
-import {TreeNode,Cost} from "../util/types.ts";
+import {TreeNode,Cost} from "../util/types";
 
 export const skillTree: TreeNode<{name : string,
   req : string,
