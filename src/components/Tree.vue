@@ -41,14 +41,14 @@ console.log(lines)
 </script>
 
 <template>
+  <svg>
+    <line v-for="l in lines" :x1="l.x1+'px'" :y1="l.y1+'px'" :x2="l.x2+'px'" :y2="l.y2+'px'"></line>
+  </svg>
   <template v-for="n in props.nodes">
     <div :style="{top: yPos(n.y)+'px', left: xPos(n.x)+'px'}" class="node">
       <slot name="node" v-bind="n.elem"/>
     </div>
   </template>
-<svg>
-    <line v-for="l in lines" :x1="l.x1+'px'" :y1="l.y1+'px'" :x2="l.x2+'px'" :y2="l.y2+'px'"></line>
-</svg>
 </template>
 
 <style scoped>
