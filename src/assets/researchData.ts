@@ -1,4 +1,4 @@
-import type {ResearchCost, TreeNode} from "../util/types";
+import type {TreeNode} from "../util/types";
 
 const nihilimInternal: TreeNode<{req : string,
   cost : number,
