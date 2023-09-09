@@ -22,4 +22,6 @@ type TreeNode<T> = {
   dependOn : string[],
   elem : T,
 }
-export type { entry, GM, Cost, TreeNode }
+
+type ResearchCost = { wood? : number, stone? : number, metal? : number, other: string }
+export type { entry, GM, Cost, ResearchCost, TreeNode }

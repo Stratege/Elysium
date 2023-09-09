@@ -2,7 +2,7 @@
 import {toMap} from "../util/helpers";
 import {TreeNode} from "../util/types";
 
-const props = defineProps<{nodes : TreeNode<T>[], w:number, h:number}>()
+const props = defineProps<{nodes : TreeNode<T>[], w:number, h:number, d:number}>()
 const xs = props.nodes.map(x => x.x)
 const ys = props.nodes.map(x => x.y)
 const maxX = Math.max(0,...xs)
@@ -12,8 +12,8 @@ const maxY = Math.max(0,...ys)
 const index = toMap(props.nodes, x => x.name)
 
 
-const w = props.w+50
-const h = props.h+50
+const w = props.w+props.d
+const h = props.h+props.d
 const maxXcss = (maxX+1)*w+'px'
 const maxYcss = (maxY+1)*h+'px'
 const wcss = props.w+'px'

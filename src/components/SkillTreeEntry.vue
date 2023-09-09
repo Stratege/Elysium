@@ -15,8 +15,11 @@ let cost = props.cost.amount + " " + props.cost.kind
 
 <template>
   <div :style="{'padding-top': '10px'}"><b>Name</b>: {{props.name}}</div>
+  <div><br></div>
   <div><b>Requirement</b>: {{props.requirement}}</div>
+  <div><br></div>
   <div><b>Cost</b>: {{cost}}</div>
+  <div><br></div>
   <div><b>Benefit</b>: {{props.benefit}}</div>
 </template>
 
