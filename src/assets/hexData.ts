@@ -27,8 +27,8 @@ export const realEntries : {[x:string] : entry} = {
     faction: 'Dungeon',
     owningGM: 'Stratege',
   },
-  "6,19": {
+/*  "6,19": {
     faction: 'Nihi',
     owningGM: 'Stratege',
-  }
+  }*/
 }

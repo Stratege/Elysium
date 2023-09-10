@@ -1,9 +1,9 @@
 import type {TreeNode} from "../util/types";
 
-const gp = 5
-const scry = 6
+const gp = 6
+const scry = 7
 const sa = 1
-const bt = 8
+const bt = 9
 const nihilimInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
@@ -30,12 +30,16 @@ const nihilimInternal: TreeNode<{desc : string,
   { x: scry+1, y: 2, name: "Halls of Divination", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "Unlocks [Halls of Divination], a building that gives +2 weekly scout capacity"}},
   { x: gp, y: 3, name: "Mystic Focus", dependOn: ["Arcane Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: gp, y: 4, name: "Gnosis Truths", dependOn: ["Mystic Focus"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: 7, y: 5, name: "Scientific Treatment", dependOn: [], elem: { desc: "", cost: 1, benefit: "Once per session per player, if they would receive a minor defeat instead they don't."}},
-  { x: 7, y: 6, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "<desc (desc so hard, it is a good one)>", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a building that further boosts this benefit"}},
+  { x: sa-1, y: 4, name: "Scientific Treatment", dependOn: ["Total Project Awareness"], elem: { desc: "", cost: 1, benefit: "Once per session per player, if they would receive a minor defeat instead they don't."}},
+  { x: sa-1, y: 5, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "<desc (desc so hard, it is a good one)>", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a building that further boosts this benefit"}},
   { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Indoctrination"], elem: { desc: "<see \"ages of hate\" doc>", cost: 1, benefit: ""}},
   { x: gp-2, y: 4, name: "Mind Transference", dependOn: ["Monomind"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: bt, y: 3, name: "Unequaled Stratagems", dependOn: ["Military Discipline"], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
+  { x: sa+2, y: 1, name: "Gnosis Infused Materials", dependOn: ["Scientific Approach",  "Gnosis Principles"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: sa+2, y: 2, name: "Durability Science", dependOn: ["Gnosis Infused Materials"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: sa+3, y: 3, name: "Transcending the Steel", dependOn: ["Durability Science"], elem: { desc: "", cost: 1, benefit: ""}},
 
-
+  { x: gp-1, y: 6, name: "Omnipotence", dependOn: ["Gnosis Truths", "Mind Transference"], elem: { desc: "", cost: 1, benefit: "Can construct [Pillars of Ascension] which allow the Deity to fully manifest if the preparations are done"}},
   /*
   { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
   { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
@@ -61,23 +65,17 @@ arcane channeling
 soulbinding - desc
 arcane warfare - desc
 focused horror - desc????
-Omnipotence
 
-
-Durability Science
-Transcending the Steel
 
 Martial Training
 War Strategies - desc
-Unequaled Stratagems - desc
 The Speed of Pain - desc????
 Clarity of One - desc
-Superiror Reflexes
+Superior Reflexes
 Dual Thought - desc
 Total Presence - desc
 
 
-Gnosis Infused Materials
 Coordinated Scrapping
 --this section is a bit weak--
 Refining
@@ -88,14 +86,9 @@ Stripmining
 Striking in the rythm - rename, something about nihi cooperation for efficiency
 ----
 
-
-
 Deceitful Magicks
 Psychic Agency
 
-
-
 ---------
-
 
 */
