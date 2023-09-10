@@ -11,7 +11,7 @@
 <template>
   <Tree :nodes="nihilim" :w="w" :h="h" :d="d">
     <template #node="i">
-      <SkillTreeEntry :cost="i.cost" :name="i.name" :requirement="i.desc" :benefit="i.benefit"></SkillTreeEntry>
+      <SkillTreeEntry :cost="{kind: 'Any', amount:i.cost}" :name="i.name" :requirement="i.desc" :benefit="i.benefit"></SkillTreeEntry>
     </template>
   </Tree>
 </template>
