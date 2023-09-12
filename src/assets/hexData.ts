@@ -26,8 +26,9 @@ export const realEntries : {[x:string] : entry} = {
   "5,19": {
     faction: 'Nihi',
     owningGM: 'Stratege',
+    terrain: 'Dungeonstone',
   },
-  "5, 18": {
+  "5,18": {
     faction: 'Dungeon',
     owningGM: 'Stratege',
     note: 'Lich; Other GMs feel free to use this hex after asking',
