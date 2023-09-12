@@ -43,12 +43,15 @@ if (props.highlightGM && (props.entry.owningGM === props.highlightGM)) {
 let outercolor = claimedColorDict[outercolorIndex]
 let innercolor = (props.entry.building || props.entry.faction === 'Dragon' ? buildingColorDict[props.entry.faction] : null) ??'lightgrey'
 
+const offsetY = 50
+const offsetX = 0
+
 //    {{ cell.x }} , {{ cell.y}}
 let textcolor = buildingColorDict[props.entry.faction]
 </script>
 
 <template>
-  <TooltipContainer :style="{'top': cell2.y * size + 'px', 'left': cell2.x * size + 'px', position:'absolute', width: size+'px', height:size+'px', coke:'test'}">
+  <TooltipContainer :style="{'top': offsetY + cell2.y * size + 'px', 'left': offsetX + cell2.x * size + 'px', position:'absolute', width: size+'px', height:size+'px', coke:'test'}">
     <div class="hex">
     </div>
     <div class="hex inner">

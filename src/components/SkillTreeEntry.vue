@@ -9,7 +9,22 @@ const props = defineProps<{
   benefit : string,
 }>()
 
-let cost = props.cost.amount + " " + props.cost.kind
+function displayName(c : Cost)
+{
+  const displayName = {
+    Soulstone: "Soulstone",
+    "Infused Wood": "Infused Wood",
+    "Mindsteel": "Mindsteel",
+    "All": "of every ability resource",
+    "Any": "ability resources in any combination"
+  }
+  if(c.kind == "Any" && c.amount == 1) {
+    return "ability resource (any kind)"
+  }
+  return displayName[c.kind]
+}
+
+let cost = props.cost.amount + " " + displayName(props.cost)
 
 </script>
 
