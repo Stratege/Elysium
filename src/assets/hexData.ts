@@ -27,6 +27,7 @@ export const realEntries : {[x:string] : entry} = {
     faction: 'Nihi',
     owningGM: 'Stratege',
     terrain: 'Dungeonstone',
+    note: "active monoltih still around",
   },
   "5,18": {
     faction: 'Dungeon',
@@ -36,9 +37,24 @@ export const realEntries : {[x:string] : entry} = {
   "6,5": {
     faction: 'Dungeon',
     owningGM: 'Minioris',
-  }
+  },
+  "6,18": {
+    faction: 'Nihi',
+    owningGM: 'Stratege',
+    terrain: 'Plentiful Metal',
+  },
 /*  "6,19": {
     faction: 'Nihi',
     owningGM: 'Stratege',
   }*/
 }
+
+Object.keys(realEntries).forEach(str => {
+  let i =str.indexOf(' ');
+  let y = str;
+  while(i >= 0) {
+    y = y.substring(0,i) + y.substring(i+1)
+    i = y.indexOf(' ')
+  }
+  realEntries[y] = realEntries[str]
+})
