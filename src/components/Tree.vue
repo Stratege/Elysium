@@ -64,13 +64,14 @@ svg{
 
 line{
   stroke-width:2px;
-  stroke:grey;
+  stroke:v-bind('props.color');
 }
 .node {
   position:absolute;
   background-color: v-bind('props.color');
+  color: white;
   width: v-bind('wcss');
   height: v-bind('hcss');
-  overflow: scroll;
+  overflow: auto;
 }
 </style>
