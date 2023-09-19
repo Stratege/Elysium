@@ -27,6 +27,7 @@ export const realEntries : {[x:string] : entry} = {
     faction: 'Nihi',
     owningGM: 'Stratege',
     terrain: 'Dungeonstone',
+    building: 'Forge',
     note: "active monoltih still around",
   },
   "5,18": {
