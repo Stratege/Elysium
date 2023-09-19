@@ -11,7 +11,7 @@ const d = 100
 <template>
   <Tree :nodes="skillTree" :w="w" :h="h" :d="d">
     <template #node="i">
-      <SkillTreeEntry :cost="i.cost" :name="i.name" :requirement="i.req" :benefit="i.benefit"></SkillTreeEntry>
+      <SkillTreeEntry :cost="i.cost" :name="i.name" :requirement="i.req" :benefit="i.benefit" :special="i.special"></SkillTreeEntry>
     </template>
   </Tree>
 </template>

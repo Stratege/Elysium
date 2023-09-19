@@ -7,6 +7,7 @@ const props = defineProps<{
   requirement : string,
   cost : Cost,
   benefit : string,
+  special? : string,
 }>()
 
 function displayName(c : Cost)
@@ -36,6 +37,7 @@ let cost = props.cost.amount + " " + displayName(props.cost)
   <div><b>Cost</b>: {{cost}}</div>
   <div><br></div>
   <div><b>Benefit</b>: {{props.benefit}}</div>
+  <div v-if="props.special != undefined"><b>Special</b>: {{props.special}}</div>
 </template>
 
 <style scoped>
