@@ -23,5 +23,4 @@ type TreeNode<T> = {
   elem : T,
 }
 
-type ResearchCost = { wood? : number, stone? : number, metal? : number, other: string }
-export type { entry, GM, Cost, ResearchCost, TreeNode }
+export type { entry, GM, Cost, TreeNode }

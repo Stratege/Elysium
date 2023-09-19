@@ -2,7 +2,9 @@
 import {toMap} from "../util/helpers";
 import {TreeNode} from "../util/types";
 
-const props = defineProps<{nodes : TreeNode<T>[], w:number, h:number, d:number}>()
+const props = withDefaults(defineProps<{nodes : TreeNode<T>[], w:number, h:number, d:number, color? : string}>(),{
+  color: "grey"
+})
 const xs = props.nodes.map(x => x.x)
 const ys = props.nodes.map(x => x.y)
 const maxX = Math.max(0,...xs)
@@ -66,7 +68,7 @@ line{
 }
 .node {
   position:absolute;
-  background-color:grey;
+  background-color: v-bind('props.color');
   width: v-bind('wcss');
   height: v-bind('hcss');
   overflow: scroll;

@@ -1,5 +1,16 @@
 import type {TreeNode} from "../util/types";
 
+const whiptext = "You start with the [Whipping Sorrow] unlocked, a unit that costs 2 Military to deploy and brings back 1 of any basic Resource (players choice)."
+const prosytext = "Add [Proselytes] to the military, a basic ranged unit that can be used with [Expeditions] where it costs 1 military and grants 1 gnosis";
+const mindbladetext = "Add [Mindblades] to the military, a controler/defender unit that can be used with [Expeditions] where it costs 1 mindsteel and 2 military and grants 3 of any basic resource";
+/*
+Minister of Pain: 3 Military for 4 Gnosis
+Wraith: 1 Military for 1 Labor
+Specter: 2 Military for 2 Labor 1 basic resource
+Atrocitus: 3 Military for 2 Labor 2 Mindsteel
+Prefect: 2 Mindsteel 2 Military for 5 of any basic resource
+Consul: 4 Military 2 Gnosis for any 10 resources
+*/
 const gp = 7
 const scry = 8
 const sa = 2
@@ -8,17 +19,17 @@ const esp = 10
 const nihilimInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
-  { x: gp-1, y: 0, name: "Gnosis Principles", dependOn: [], elem: { desc: "", cost: 4, benefit: "+2 Gnosis/week from Labs. Add [Proselytes] to the military, a basic ranged unit"}},
+  { x: gp-1, y: 0, name: "Gnosis Principles", dependOn: [], elem: { desc: "", cost: 4, benefit: "+2 Gnosis/week from Labs. "+prosytext}},
   { x: scry, y: 0, name: "Scrying", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Nihilim Scouting], which allows the faction during resource allocation phase to Scry a hex adjacent to a conquered one, revealing the terrain, resources and theme of it"}},
   { x: sa, y: 0, name: "Scientific Approach", dependOn: [], elem: { desc: "", cost: 4, benefit: "Parties gain 1 Gnosis whenever they non-violently interact with a mystery. Gnosis carrying capacity increases by 0.25 per hour"}},
-  { x: bt, y: 0, name: "Basic Tactics", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered this week that way."}},
+  { x: bt, y: 0, name: "Basic Tactics", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way."}},
   { x: gp-1, y: 1, name: "Telepathy", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: gp, y: 1, name: "Arcane Channeling", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: scry, y: 2, name: "Precognition", dependOn: ["Scrying","Telepathy"], elem: { desc: "", cost: 1, benefit: "When adventuring in a scried hex, each character can 1/session upgrade the result of a check OR gain information as if they had done an action without committing to the action"}},
   { x: sa+1, y: 1, name: "Faith in Logic", dependOn: ["Scientific Approach"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: sa, y: 1, name: "Leadership", dependOn: ["Scientific Approach"], elem: { desc: "<see doc>", cost: 1, benefit: "+1 wood/metal/stone per week from any building that produces that resources weekly"}},
   { x: gp-1, y: 2, name: "Telekinses", dependOn: ["Telepathy"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: gp-2, y: 2, name: "Mindforging", dependOn: ["Telepathy","Faith in Logic"], elem: { desc: "<see doc>", cost: 1, benefit: "All Nihilim gain a +2 faction bonus to Will saves. Steelsinger consumes 5 more metal/week and produces 5 more Mindsteel/week. Unlock [Mindblade] for Expeditions, a Controller/Defender unit which costs 1 Mindsteel and 2 Military to deploy on an expedition but provides 3 of any basic resource"}},
+  { x: gp-2, y: 2, name: "Mindforging", dependOn: ["Telepathy","Faith in Logic"], elem: { desc: "<see doc>", cost: 1, benefit: "All Nihilim gain a +2 faction bonus to Will saves. Steelsinger consumes 5 more metal/week and produces 5 more Mindsteel/week. "+mindbladetext}},
   { x: gp, y: 2, name: "Arcane Warfare", dependOn: ["Arcane Channeling"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: sa+1, y: 2, name: "Indoctrination", dependOn: ["Faith in Logic"], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
   { x: sa-1, y: 2, name: "Coordinated Scrapping", dependOn: ["Leadership"], elem: { desc: "", cost: 1, benefit: "+1 scrap/week"}},
@@ -31,15 +42,15 @@ const nihilimInternal: TreeNode<{desc : string,
   { x: scry+1, y: 2, name: "Halls of Divination", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "Unlocks [Halls of Divination], a building that allows 2 more Scryings per week"}},
   { x: gp, y: 3, name: "Mystic Focus", dependOn: ["Arcane Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: gp, y: 4, name: "Gnosis Truths", dependOn: ["Mystic Focus"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: sa-1, y: 4, name: "Scientific Treatment", dependOn: ["Total Project Awareness"], elem: { desc: "", cost: 1, benefit: "Once per session per player, if they would receive a minor defeat instead they don't."}},
-  { x: sa-1, y: 5, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "<desc (desc so hard, it is a good one)>", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a building that further boosts this benefit"}},
-  { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Indoctrination"], elem: { desc: "The toleration for the ones that doesn’t follow the code of the Nihilim indoctrination is weakening. Either the people choose the calculated and cold path that they once chose to walk, or they will be banished.", cost: 1, benefit: ""}},
+  { x: sa-1, y: 4, name: "Scientific Treatment", dependOn: ["Total Project Awareness"], elem: { desc: "A detached analysis of the patient's illness and a willingness to do structured experiments for cures helps treat many things a lesser healer would consider fatal - even if it sometimes hastens death along in too severe cases.", cost: 1, benefit: "Once per session per player, if they would receive a minor defeat instead they don't."}},
+  { x: sa-1, y: 5, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "Maybe it’s the lack of irrational emotions that turns the Nihilim into such technically skilled doctors. When knowledge increases in phase with technology, even death can be defeated. This knowledge will turn Nihilim doctors into excellent healers.", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a building that further boosts this benefit"}},
+  { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Indoctrination"], elem: { desc: "The toleration for the ones that doesn’t follow the code of the Nihilim indoctrination is weakening. Either the people choose the calculated and cold path that they once chose to walk, or they will be banished.", cost: 1, benefit: "Labor producing buildings (including HQ) produce -1 labor per week. Any building producing basic resources or Gnosis increases such production by 2."}},
   { x: gp-2, y: 4, name: "Mind Transference", dependOn: ["Monomind"], elem: { desc: "", cost: 1, benefit: "Gain access to the [Gnosis Weave Core] building, which generates labor without the need for cryochambers"}},
   { x: bt, y: 3, name: "Unequaled Stratagems", dependOn: ["Military Discipline"], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
   { x: sa+2, y: 1, name: "Gnosis Infused Materials", dependOn: ["Scientific Approach",  "Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "Buildings producing wood/metal/stone weekly gain +2 to each of those resources they already produce for each Lab adjacent to them"}},
   { x: sa+2, y: 2, name: "Durability Science", dependOn: ["Gnosis Infused Materials"], elem: { desc: "", cost: 1, benefit: "May substitute up to half the wood and stone cost of buildings with Metal. Forges gain +1 Scrapyard capacity"}},
   { x: sa+2, y: 4, name: "Transcending the Steel", dependOn: ["Durability Science", "Monomind"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: bt+1, y: 1, name: "Superior Reflexes", dependOn: ["Basic Tactics"], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. You start with the [Whipping Sorrow] unlocked, a unit that costs 2 Military to deploy and brings back 1 of any basic Resource (players choice).\n\nAlso unlocks [Patrols] allowing GMs to use Nihilim units in random encounters, which grant Mindsteel when defeated."}},
+  { x: bt+1, y: 1, name: "Superior Reflexes", dependOn: ["Basic Tactics"], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+whiptext+"\n\nAlso unlocks [Patrols] allowing GMs to use Nihilim units in random encounters, which grant Mindsteel when defeated."}},
   { x: esp, y: 0, name: "Espionage", dependOn: [], elem: { desc: "", cost: 1, benefit: "Players of at least Rep Rank 3 with Nihilim gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Nihilim mean you gain Gnosis for the faction instead of Soulstone/Infused Wood."}},
   { x: esp, y: 1, name: "Black Ops", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
   { x: esp+1, y: 2, name: "Deceitful Magicks", dependOn: ["Espionage"], elem: { desc: "", cost: 1, benefit: "When engaging in Espionage, the Nihilim gain an amount of basic resources equal to the amount earned divided by playercount."}},
@@ -58,13 +69,39 @@ const nihilimInternal: TreeNode<{desc : string,
   { x: 99, y: 99, name: "Mind Transference", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},*/
 ]
 
+const covenantInternal: TreeNode<{desc : string,
+  cost : number,
+  benefit : string}>[] = [
+  { x: 0, y: 0, name: "Divine Right", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: 0, y: 0, name: "Standing Military", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: 0, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: 0, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: 0, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  //  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+]
+
+/*
 
 
-export const nihilim = nihilimInternal.map(x => {
-  let elem = {name: x.name, ...x.elem}
-  let ret = {...x, elem}
-  return ret
-})
+ */
+
+const thulInternal: TreeNode<{desc : string,
+  cost : number,
+  benefit : string}>[] = [
+  { x: 0, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  //  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+]
+
+function fix (x : TreeNode<{desc : string,
+  cost : number,
+  benefit : string}>)  {
+    let elem = {name: x.name, ...x.elem}
+    let ret = {...x, elem}
+    return ret
+}
+export const nihilim = nihilimInternal.map(fix)
+export const covenant = covenantInternal.map(fix)
+export const thul = thulInternal.map(fix)
 /*
 second sight
 
@@ -110,15 +147,15 @@ mechanics:
       - patrols earn resources
       - unlock units you can change patrols up with
       - better units increase gains (and can bring back research/mats)
-      Whip: 2 Military for any 1 basic resource
-      Prosy: 1 Military for 1 gnosis
-      Mindblade: 1 Mindsteel + 2 Military for 3 of any basic resource
-      Minister of Pain: 3 Military for 4 Gnosis
+      Whip: 1 Military for any 2 basic resource
+      Prosy: 1 Military for 2 gnosis
+      Mindblade: 1 Mindsteel + 2 Military for 5 of any basic resource
+      Minister of Pain: 3 Military for 5 Gnosis
       Wraith: 1 Military for 1 Labor
       Specter: 2 Military for 2 Labor 1 basic resource
       Atrocitus: 3 Military for 2 Labor 2 Mindsteel
-      Prefect: 2 Mindsteel 2 Military for 5 of any basic resource
-      Consul: 4 Military 2 Gnosis for any 10 resources
+      Prefect: 2 Mindsteel 2 Military for 8 of any basic resource
+      Consul: 4 Military 2 Gnosis for any 10 of any resource other than military
 
 
   espionage = benefits when helping other factions
