@@ -6,7 +6,7 @@ import ResearchTree from "../components/ResearchTree.vue";
 const routes: Array<RouteRecordRaw> = [
   {path: '/', name: 'Main', component: HelloWorld},
   {path: '/Skills', name: 'Skills', component: Skilltree},
-  {path: '/Research', name: 'Research', component: ResearchTree},
+  {path: '/NihiResearch', name: 'Nihilim Research', component: ResearchTree},
 ]
 
 const router = createRouter({history: createWebHashHistory(), routes})
