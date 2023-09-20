@@ -16,7 +16,7 @@ const scry = 8
 const sa = 2
 const bt = 0
 const esp = 10
-const nihilimInternal: TreeNode<{desc : string,
+let nihilimInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
   { x: gp-1, y: 0, name: "Gnosis Principles", dependOn: [], elem: { desc: "", cost: 4, benefit: "+2 Gnosis/week from Labs. "+prosytext}},
@@ -84,7 +84,7 @@ const mil = 0
 const rec = 4
 //const espc = 8
 const gov = 7
-const covenantInternal: TreeNode<{desc : string,
+let covenantInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
   { x: dr, y: 0, name: "Recvover the Teachings", dependOn: [], elem: { desc: "", cost: 1, benefit: "+1 Faith/week for Chapel"}},
@@ -286,12 +286,14 @@ function cost_override(newCost : number[]) {
     return tech2
   }
 }
+nihilimInternal = nihilimInternal.map(cost_override([4,6,10,17,28,47,79,79]))
+covenantInternal = covenantInternal.map(cost_override([7,11,18,30,51]))
 
 printCosts("nihi",nihilimInternal)
 printCosts("cove",covenantInternal)
 printCosts("thul",thulInternal)
-export const nihilim = nihilimInternal.map(fix).map(cost_override([4,6,10,17,28,47,79,79]))
-export const covenant = covenantInternal.map(fix).map(cost_override([7,11,18,30,51]))
+export const nihilim = nihilimInternal.map(fix)
+export const covenant = covenantInternal.map(fix)
 export const thul = thulInternal.map(fix)
 /*
 second sight
