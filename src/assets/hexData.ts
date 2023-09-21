@@ -52,6 +52,12 @@ export const realEntries : {[x:string] : entry} = {
   "7,4": {
     faction: 'Dungeon',
     owningGM: 'Minioris',
+  },
+  "6,6": {
+    faction: 'Dungeon',
+    owningGM: 'Stratege',
+    terrain:'Dungeonstone',
+    note:'Dragonspawn here. Available for anyone to run, but please ask'
   }
 /*  "6,19": {
     faction: 'Nihi',
