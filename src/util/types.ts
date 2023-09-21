@@ -1,4 +1,4 @@
-type GM = 'Stratege' | 'Darthgorloc' | 'Minioris'
+type GM = 'Stratege' | 'Darthgorloc' | 'Minioris' | 'Helian'
 type Terrain = 'Dungeonstone' | 'Soil' | 'Place of Power' | 'Plentiful Metal' | 'Plentiful Dead' | 'Unexplored'
 type Faction = 'Nihi' | 'Cove' | 'Thul' | 'Dungeon' | 'Dragon'
 type Building = 'HQ' | 'Forge'

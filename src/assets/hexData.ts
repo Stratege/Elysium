@@ -58,11 +58,19 @@ export const realEntries : {[x:string] : entry} = {
     owningGM: 'Stratege',
     terrain:'Dungeonstone',
     note:'Dragonspawn here. Available for anyone to run, but please ask'
-  }
-/*  "6,19": {
-    faction: 'Nihi',
-    owningGM: 'Stratege',
-  }*/
+  },
+  "6,20": {
+    faction: 'Dungeon',
+    owningGM: 'Helian',
+  },
+  "7,19": {
+    faction: 'Dungeon',
+    owningGM: 'Helian',
+  },
+  "7,20": {
+    faction: 'Dungeon',
+    owningGM: 'Helian',
+  },
 }
 
 Object.keys(realEntries).forEach(str => {
