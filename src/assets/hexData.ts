@@ -71,6 +71,17 @@ export const realEntries : {[x:string] : entry} = {
     faction: 'Dungeon',
     owningGM: 'Helian',
   },
+  "19,5": {
+    faction: 'Thul',
+    owningGM: 'Darthgorloc',
+    terrain: 'Fertile Soil',
+    note: "corrupted altar there, tangle is holding back the corruption"
+  },
+  "18,6": {
+    faction: 'Dungeon',
+    owningGM: 'Darthgorloc',
+    note: "cave of the endless, other GMs can take it, just ask"
+  },
 }
 
 Object.keys(realEntries).forEach(str => {

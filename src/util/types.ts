@@ -1,5 +1,5 @@
 type GM = 'Stratege' | 'Darthgorloc' | 'Minioris' | 'Helian'
-type Terrain = 'Dungeonstone' | 'Soil' | 'Place of Power' | 'Plentiful Metal' | 'Plentiful Dead' | 'Unexplored'
+type Terrain = 'Dungeonstone' | 'Soil' | 'Leyline' | 'Fertile Soil' | 'Plentiful Metal' | 'Plentiful Dead' | 'Unexplored'
 type Faction = 'Nihi' | 'Cove' | 'Thul' | 'Dungeon' | 'Dragon'
 type Building = 'HQ' | 'Forge'
 type entry = {
