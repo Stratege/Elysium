@@ -2,15 +2,14 @@ import type {TreeNode} from "../util/types";
 
 const whiptext = "You start with the [Whipping Sorrow] unlocked, a unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
 const prosytext = "Add [Proselytes] to the military, a basic ranged unit that can be used with [Expeditions] where it costs 1 Military and collects 2 Gnosis";
-const mindbladetext = "Add [Mindblades] to the military, a controler/defender unit that can be used with [Expeditions] where it costs 1 Mindsteel and 2 Military and collects 3 of any basic resource";
-/*
-Minister of Pain: 3 Military for 4 Gnosis
-Wraith: 1 Military for 1 Worker
-Specter: 2 Military for 2 Workers 1 basic resource
-Atrocitus: 3 Military for 2 Workers 2 Mindsteel
-Prefect: 2 Mindsteel 2 Military for 5 of any basic resource
-Consul: 4 Military 2 Gnosis for any 10 resources
-*/
+const mindbladetext = "Add [Mindblades] to the military, a controller/defender unit that can be used with [Expeditions] where it costs 1 Mindsteel and 2 Military and collects 3 of any basic resource";
+const ministerofpaintext = "Add [MoP] to the military, a controller/artillery unit that can be used with [Expeditions] where it costs 3 Military and collects 5 Gnosis"
+const wraithtext = "Unit [W] for 1 Military for 1 Worker"
+const spectertext = "Unit [S] for 2 Military for 2 Workers, 2 basic resources"
+//const atrocitustext = "Unit [A] for 3 Military for 2 Workers, 2 Mindsteel"
+const prefecttext = "Unit [P] for 2 Mindsteel 2 Military for 5 of any basic resources"
+const consultext = "Unit [C] for 4 Military 2 Gnosis for any 10 non-Military resources"
+
 const gp = 7
 const scry = 8
 const sa = 2
@@ -23,42 +22,42 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: scry, y: 0, name: "Scrying", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Nihilim Scouting], which allows the faction during resource allocation phase to Scry a hex adjacent to a conquered one, revealing the terrain, resources and theme of it"}},
   { x: sa, y: 0, name: "Scientific Approach", dependOn: [], elem: { desc: "", cost: 4, benefit: "Parties gain 1 Gnosis whenever they non-violently interact with a mystery. Gnosis carrying capacity increases by 0.25 per hour"}},
   { x: bt, y: 0, name: "Basic Tactics", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way."}},
-  { x: gp-1, y: 1, name: "Telepathy", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: gp-1, y: 1, name: "Telepathy", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "Labs that are exactly 2 hexes away from another lab gain another 3 Gnosis/week. 1/session when entering from the Nihilim entrance or of Rep 4 Nihi a PC can enter telepathic communication with another willing character for 1 hour, sight (or similiar) is needed to establish but not maintain the connection."}},
   { x: gp, y: 1, name: "Arcane Channeling", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: scry, y: 2, name: "Precognition", dependOn: ["Scrying","Telepathy"], elem: { desc: "", cost: 1, benefit: "When adventuring in a scried hex, each character can 1/session upgrade the result of a check OR gain information as if they had done an action without committing to the action"}},
   { x: sa+1, y: 1, name: "Faith in Logic", dependOn: ["Scientific Approach"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: sa, y: 1, name: "Calculated Efficiency", dependOn: ["Scientific Approach"], elem: { desc: "<see doc>", cost: 1, benefit: "+1 wood/metal/stone per week from any building that produces that resources weekly"}},
   { x: gp-1, y: 2, name: "Telekinses", dependOn: ["Telepathy"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: gp-2, y: 2, name: "Mindforging", dependOn: ["Telepathy","Faith in Logic"], elem: { desc: "<see doc>", cost: 1, benefit: "All Nihilim gain a +2 faction bonus to Will saves. Steelsinger consumes 5 more metal/week and produces 5 more Mindsteel/week. "+mindbladetext}},
-  { x: gp, y: 2, name: "Arcane Warfare", dependOn: ["Arcane Channeling"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: sa+1, y: 2, name: "Indoctrination", dependOn: ["Faith in Logic"], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
+  { x: gp, y: 2, name: "Arcane Warfare", dependOn: ["Arcane Channeling"], elem: { desc: "", cost: 1, benefit: ""+ministerofpaintext}},
+  { x: sa+1, y: 2, name: "Indoctrination", dependOn: ["Faith in Logic"], elem: { desc: "<see doc>", cost: 1, benefit: ""+wraithtext}},
   { x: sa-1, y: 2, name: "Coordinated Scrapping", dependOn: ["Calculated Efficiency"], elem: { desc: "", cost: 1, benefit: "+1 scrap/week"}},
-  { x: bt, y: 2, name: "Military Discipline", dependOn: ["Calculated Efficiency","Basic Tactics"], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
+  { x: bt, y: 2, name: "Military Discipline", dependOn: ["Calculated Efficiency","Basic Tactics"], elem: { desc: "<see doc>", cost: 1, benefit: "Whenever Military is expended, recover 40% (rounded down) after the Resource Allocation phase ends"}},
   { x: sa, y: 2, name: "Shift Planning", dependOn: ["Calculated Efficiency"], elem: { desc: "<see doc>", cost: 1, benefit: "When the Nihilim build a building they immediately gain the resources it would produce and can also use them in that same resource expenditure phase (including for further buildings). Increase basic resource carrying capacity from games by 2 per hour"}},
   { x: sa, y: 3, name: "Total Project Awareness", dependOn: ["Shift Planning"], elem: { desc: "<see doc>", cost: 1, benefit: "Reduce all building costs by 20%, rounded down. This also reduces the Workers recovered from scrapping. The overall goes down by as close as up to 20% as possible, taking from highest remaining if uneven is needed."}},
-  { x: gp-2, y: 3, name: "Monomind", dependOn: ["Mindforging"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: gp-2, y: 3, name: "Monomind", dependOn: ["Mindforging"], elem: { desc: "", cost: 1, benefit: "Gain access to the [Gnosis Weave Core] building, which generates Workers without the need for cryochambers"}},
   { x: sa, y: 4, name: "Unified Labor", dependOn: ["Total Project Awareness"], elem: { desc: "<see doc>", cost: 1, benefit: "Buildings produce 50% more basic resources (after all other bonuses) if next to another basic resource producing building"}},
   { x: scry+1, y: 1, name: "Farscry", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "when scouting can instead declare a resource, terrain or theme and find a hex where it is abundant. Does NOT work for finding Leylines"}},
   { x: scry+1, y: 2, name: "Halls of Divination", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "Unlocks [Halls of Divination], a building that allows 2 more Scryings per week"}},
   { x: gp, y: 3, name: "Mystic Focus", dependOn: ["Arcane Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: gp, y: 4, name: "Gnosis Truths", dependOn: ["Mystic Focus"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: sa-1, y: 4, name: "Scientific Treatment", dependOn: ["Total Project Awareness"], elem: { desc: "A detached analysis of the patient's illness and a willingness to do structured experiments for cures helps treat many things a lesser healer would consider fatal - even if it sometimes hastens death along in too severe cases.", cost: 1, benefit: "Once per session per player, if they would receive a minor defeat instead they don't."}},
-  { x: sa-1, y: 5, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "Maybe it’s the lack of irrational emotions that turns the Nihilim into such technically skilled doctors. When knowledge increases in phase with technology, even death can be defeated. This knowledge will turn Nihilim doctors into excellent healers.", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a building that further boosts this benefit"}},
-  { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Indoctrination"], elem: { desc: "The toleration for the ones that doesn’t follow the code of the Nihilim indoctrination is weakening. Either the people choose the calculated and cold path that they once chose to walk, or they will be banished.", cost: 1, benefit: "Workers producing buildings (including HQ) produce -1 Worker per week. Any building producing basic resources or Gnosis increases such production by 3."}},
-  { x: gp-2, y: 4, name: "Mind Transference", dependOn: ["Monomind"], elem: { desc: "", cost: 1, benefit: "Gain access to the [Gnosis Weave Core] building, which generates Workers without the need for cryochambers"}},
-  { x: bt, y: 3, name: "Unequaled Stratagems", dependOn: ["Military Discipline"], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
+  { x: sa-1, y: 5, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "Maybe it’s the lack of irrational emotions that turns the Nihilim into such technically skilled doctors. When knowledge increases in phase with technology, even death can be defeated. This knowledge will turn Nihilim doctors into excellent healers.", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a wonder-type building that further boosts this benefit"}},
+  { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Indoctrination"], elem: { desc: "The toleration for the ones that doesn’t follow the code of the Nihilim indoctrination is weakening. Either the people choose the calculated and cold path that they once chose to walk, or they will be banished.", cost: 1, benefit: "Workers producing buildings (including HQ) produce -1 Worker per week. Any building producing basic resources or Gnosis increases such production by 3."+spectertext}},
+  { x: gp-2, y: 4, name: "Mind Transference", dependOn: ["Monomind"], elem: { desc: "", cost: 1, benefit: "Unlock [Spire of Transference] a wonder-type building that allows PCs to transfer their minds into Automaton bodies for the stay in Elysium. Also allows customizing Gnosis Weave Buildings to increase their output and produce other outputs."}},
+  { x: bt, y: 3, name: "Unequaled Stratagems", dependOn: ["Military Discipline"], elem: { desc: "<see doc>", cost: 1, benefit: "Increase the Military Recovery to 50% and gain it immediately. "+prefecttext}},
   { x: sa+2, y: 1, name: "Gnosis Infused Materials", dependOn: ["Scientific Approach",  "Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "Buildings producing wood/metal/stone weekly gain +2 to each of those resources they already produce for each Lab adjacent to them"}},
   { x: sa+2, y: 2, name: "Durability Science", dependOn: ["Gnosis Infused Materials"], elem: { desc: "", cost: 1, benefit: "May substitute up to half the wood and stone cost of buildings with Metal. Forges gain +1 Scrapyard capacity"}},
-  { x: sa+2, y: 4, name: "Transcending the Steel", dependOn: ["Durability Science", "Monomind"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: sa+2, y: 4, name: "Transcending the Steel", dependOn: ["Durability Science", "Monomind"], elem: { desc: "The Nihilim learn to transcend the normal limits of steel by recreating their alloys of old out of base materials.", cost: 1, benefit: "All Nihilim metal enhanced items gain +1 to item bonus. Scrapyard output increases by 10 metal/week. Gnosis Weave Cores non-Metal and Mindsteel costs are replaced fully with Metal costs."}},
   { x: bt+1, y: 1, name: "Superior Reflexes", dependOn: ["Basic Tactics"], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+whiptext+"\n\nAlso unlocks [Patrols] allowing GMs to use Nihilim units in random encounters, which grant Mindsteel when defeated."}},
   { x: esp, y: 0, name: "Espionage", dependOn: [], elem: { desc: "", cost: 1, benefit: "Players of at least Rep Rank 2 with Nihilim gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Nihilim means you gain 2 Gnosis for the faction instead of Soulstone/Infused Wood."}},
-  { x: esp, y: 1, name: "Black Ops", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: esp, y: 1, name: "Black Ops", dependOn: ["Espionage"], elem: { desc: "", cost: 1, benefit: "When engaging in Espionage, whenever you would get reputation you may instead gain Nihilim Reputation"}},
   { x: esp+1, y: 2, name: "Deceitful Magicks", dependOn: ["Espionage"], elem: { desc: "", cost: 1, benefit: "When engaging in Espionage, the Nihilim gain an amount of basic resources equal to the amount earned divided by playercount."}},
-  { x: esp, y: 3, name: "Psychic Agency", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: esp, y: 3, name: "Psychic Agency", dependOn: ["Black Ops", "Arcane Warfare", "Precognition"], elem: { desc: "", cost: 1, benefit: "Unlock [Psychic Agency] a wonder-type building that grants benefits whenever another faction's game is played"}},
 /*  { x: , y: , name: "Dual Thought", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
   { x: , y: , name: "Total Presence", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: ""}},
   { x: , y: , name: "Clarity of One", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},*/
-  { x: gp-1, y: 6, name: "Omnipotence", dependOn: ["Gnosis Truths", "Mind Transference","Total Presence"], elem: { desc: "", cost: 1, benefit: "Can construct [Pillars of Ascension] which allow the Deity to fully manifest if the preparations are done. Also unlocks [Consul] for Expeditions."}},
+  { x: gp-1, y: 6, name: "Omnipotence", dependOn: ["Gnosis Truths", "Mind Transference","Total Presence"], elem: { desc: "", cost: 1, benefit: "Can construct [Pillars of Ascension] which allow the Deity to fully manifest if the preparations are done. Also unlocks [Consul] for Expeditions."+consultext}},
   { x: gp-1, y: 7, name: "Ascendance", dependOn: ["Omnipotence"], elem: { desc: "Special: Requires 3 [Pillars of Ascension] to be constructed", cost: 1, benefit: "After completing the [The Throne Of God Is Empty] raid, the Nihilim gain complete control over the dungeon."}}
   /*
   { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
@@ -116,6 +115,8 @@ let covenantInternal: TreeNode<{desc : string,
   { x: rec+1, y: 2, name: "Expedition Camps", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "Can construct an [Expedition Camp], a building that provides +2 Expeditions and +2 Scouting for any scouting action within 2 tiles. If the Expedition Camp is fully surrounded by friendly buildings it is automatically scrapped for a recovery of the full cost and without taking a scrapping action"}},
   { x: rec, y: 3, name: "Search the Divine", dependOn: ["Fast Deployment"], elem: { desc: "", cost: 1, benefit: "Expeditions have a 10% chance of finding a [Shard of Ramathos], needed for high level research and buildings"}},
   { x: rec, y: 4, name: "Eyes of Ramatos", dependOn: ["Search the Divine"], elem: { desc: "", cost: 1, benefit: "Allows constructing the [Eyes of Ramatos] a building which reveals all hexes within a radius of 5 and in the same radius any Covenant has Perfect True Seeing, which works like True Seeing but automatically succeeds on all counteract checks against non-perfect effects"}},
+  { x: rec+1, y: 5, name: "The Awakening", dependOn: ["Search the Divine"], elem: { desc: "Special: Requires the construction of the 5 ramatos-tier wonder buildings.", cost: 0, benefit: "Obtain the [Rites of Awakening]"}},
+  { x: rec+1, y: 6, name: "Resurrection", dependOn: ["The Awakening"], elem: {desc: "Special: Requires [Rites of Awakening] to have been performed", cost: 0, benefit: "After completing the [Through the Gates of Hell] raid, Ramatos walks among his followers once more"}},
 
   { x: mil, y: 0, name: "Standing Military", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way."}},
   { x: mil, y: 1, name: "Mandatory Service", dependOn: ["Standing Military"], elem: { desc: "", cost: 1, benefit: "Barracks require +1 Worker/week and produce +2 Military/week"}},
@@ -282,7 +283,7 @@ function cost_override(newCost : number[]) {
     cost : number,
     benefit : string}>) {
     const tech2 = {...tech}
-    tech2.elem.cost = newCost[tech.y]
+    tech2.elem.cost = newCost[tech.y] ?? 0
     return tech2
   }
 }
@@ -375,5 +376,17 @@ portal subsystem:
     -
   Corruptions is permanent
   Find Astralium which provides buffs
+
+ */
+
+/*
+Faith in Logic    -
+Indoctrination    -
+Telekinesis       - Mana Channeling for moving? (The power of Telekinesis makes it possible for the Nihilim to move objects with mere thought.)
+Arcane Channeling - Whenever the Nihilim gain Gnosis they also gain an equal amount of Mana. Mana can be used for [Channeling]. You can channel mana into production. Channeling into a production type increases how much those buildings produce with the formula sqrt(x/10)
+Arcane Channeling - Channel Mana
+Arcane Warfare    - Use Mana for Military
+Mystic Focus      -
+Gnosis Truths     - Mana Channeling Wonder Building
 
  */
