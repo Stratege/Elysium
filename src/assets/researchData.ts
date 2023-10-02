@@ -72,8 +72,8 @@ const footmentext = "You start with the [Knight Exemplar] unlocked, a defender u
 const preachertext = "Unlock the [Preacher], a holy support unit which costs 1 Miliatry and  1 Faith to deploy and brings back 2 Basic Resources + 1 for each Defender unit on the same expedition"
 const longbowmentext = "Unlock the [Exemplar Harbinger], a ranged unit that costs 2 Military to deploy and brings back 2 Workers. In the following week, for each Exemplar Harbinger deployed, players can call in a volley strike once"
 const phalanxtext = "Unlock the [Exemplar Bastion], a defender unit that costs 3 Military to deploy and brings back 5 basic resources"
-const prelateaviciatext = "Unlock [Prelate Avicia], a holy HERO unit (can only deploy one per week) for 4 Military, each other unit on the expedition collects +1 resource of a type it already collects"
-const vicarezekiustext = "Unlock [Vicar Ezekius], a holy HERO unit (can only deploy one per week) for 5 Military allowing the expedition to conquer a hex"
+const prelateaviciatext = "Unlock [Prelate Avicia], a holy hero unit (can only deploy one per week) for 4 Military, each other unit on the expedition collects +1 resource of a type it already collects"
+const vicarezekiustext = "Unlock [Vicar Ezekius], a holy hero unit (can only deploy one per week) for 5 Military allowing the expedition to conquer a hex"
 const paladintext = "Unlock the [Holy Avenger], a holy unit that costs 1 Soulstone and 3 Military to deploy and brings back 8 Basic Resources as well as bringing 1 Soulstone for each non-Holy Avenger Holy unit"
 const knighttext = "Unlock the [Exemplar Vengers], a cavalry unit which costs 2 Military to deploy and brings back 2 Workers and 1 Basic Resource. In the following week, for each Exemplar Venger deployed, players can get information on an unvisited room in the session once"
 
