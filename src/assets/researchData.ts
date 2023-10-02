@@ -90,7 +90,7 @@ let covenantInternal: TreeNode<{desc : string,
   { x: dr, y: 1, name: "Divine Right", dependOn: ["Recvover the Teachings"], elem: { desc: "", cost: 1, benefit: "Unlock [Scrutators] which can be used to increase production of a single building by 50% (rounded up) and gain 1 Scrutator. "+preachertext}},
   { x: dr, y: 2, name: "Sacred Sites", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Can upgrade Chapel into [Church], this upgrade costs as much as building a Chapel and doubles weekly Faith production"}},
   { x: dr, y: 3, name: "Champions of the Faith", dependOn: ["Sacred Sites"], elem: { desc: "", cost: 1, benefit: prelateaviciatext}},
-  { x: dr, y: 4, name: "Divine Herald", dependOn: ["Champions of the Faith"], elem: { desc: "", cost: 1, benefit: vicarezekiustext}},
+  { x: dr, y: 4, name: "Divine Herald", dependOn: ["Champions of the Faith"], elem: { desc: "", cost: 1, benefit: vicarezekiustext + " Also Unlocks the [Throne of Ramatos] a wonder building that improves Heroes and Scrutators"}},
 //  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
 
   { x: dr+1, y: 2, name: "Priesthood", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Gain +1 Scrutator"}},
