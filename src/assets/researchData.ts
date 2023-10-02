@@ -21,7 +21,7 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: gp-1, y: 0, name: "Gnosis Principles", dependOn: [], elem: { desc: "", cost: 4, benefit: "+2 Gnosis/week from Labs. "+prosytext}},
   { x: scry, y: 0, name: "Scrying", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Nihilim Scouting], which allows the faction during resource allocation phase to Scry a hex adjacent to a conquered one, revealing the terrain, resources and theme of it"}},
   { x: sa, y: 0, name: "Scientific Approach", dependOn: [], elem: { desc: "", cost: 4, benefit: "Parties gain 1 Gnosis whenever they non-violently interact with a mystery. Gnosis carrying capacity increases by 0.25 per hour"}},
-  { x: bt, y: 0, name: "Basic Tactics", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way."}},
+  { x: bt, y: 0, name: "Basic Tactics", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
   { x: gp-1, y: 1, name: "Telepathy", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "Labs that are exactly 2 hexes away from another lab gain another 3 Gnosis/week. 1/session when entering from the Nihilim entrance or of Rep 4 Nihi a PC can enter telepathic communication with another willing character for 1 hour, sight (or similiar) is needed to establish but not maintain the connection."}},
   { x: gp, y: 1, name: "Arcane Channeling", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: scry, y: 2, name: "Precognition", dependOn: ["Scrying","Telepathy"], elem: { desc: "", cost: 1, benefit: "When adventuring in a scried hex, each character can 1/session upgrade the result of a check OR gain information as if they had done an action without committing to the action"}},
@@ -68,14 +68,14 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: 99, y: 99, name: "Mind Transference", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},*/
 ]
 
-const footmentext = "You start with the [Footman] unlocked, a defender unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
-const preachertext = "Expedition: Preacher - 1 miliatry 1 faith for 2 basic resources + 1 for each Defender unit"
-const longbowmentext = "Longbow - 2 military for 2 Workers and players can call in a volley once"
-const phalanxtext = "Phalanx - 3 military for 5 basic resources"
-const prelateaviciatext = "Prelate Avicia - [HERO] (can only deploy one per week) 4 Military, each other unit on the expedition collects +1 resource of a type it already collects"
-const vicarezekiustext = "Vicar Ezekius - [HERO] (can only deploy one per week) 5 Military, the expedition can conquer a hex"
-const paladintext = "Holy Avenger / Paladin - 1 soulstone 3 military for 8 basic resources and 1 soulstone for each non-Paladin Holy unit"
-const knighttext = "Knight - 2 military for 2 Workers 1 basic resource"
+const footmentext = "You start with the [Knight Exemplar] unlocked, a defender unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
+const preachertext = "Unlock the [Preacher], a holy support unit which costs 1 Miliatry and  1 Faith to deploy and brings back 2 Basic Resources + 1 for each Defender unit on the same expedition"
+const longbowmentext = "Unlock the [Exemplar Harbinger], a ranged unit that costs 2 Military to deploy and brings back 2 Workers. In the following week, for each Exemplar Harbinger deployed, players can call in a volley strike once"
+const phalanxtext = "Unlock the [Exemplar Bastion], a defender unit that costs 3 Military to deploy and brings back 5 basic resources"
+const prelateaviciatext = "Unlock [Prelate Avicia] - [HERO, Holy] (can only deploy one per week) 4 Military, each other unit on the expedition collects +1 resource of a type it already collects"
+const vicarezekiustext = "Unlock [Vicar Ezekius] - [HERO, Holy] (can only deploy one per week) 5 Military, the expedition can conquer a hex"
+const paladintext = "Unlock the [Holy Avenger], a holy unit that costs 1 Soulstone and 3 Military to deploy and brings back 8 Basic Resources as well as bringing 1 Soulstone for each non-Holy Avenger Holy unit"
+const knighttext = "Unlock the [Exemplar Vengers], a cavalery unit which costs 2 Military to deploy and brings back 2 Workers and 1 Basic Resource"
 
 
 const dr = 2
@@ -86,46 +86,47 @@ const gov = 7
 let covenantInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
-  { x: dr, y: 0, name: "Recvover the Teachings", dependOn: [], elem: { desc: "", cost: 1, benefit: "+1 Faith/week for Chapel"}},
-  { x: dr, y: 1, name: "Divine Right", dependOn: ["Recvover the Teachings"], elem: { desc: "", cost: 1, benefit: "Unlock [Leaders] which can be used to increase production of a single building by 50% (rounded up) and gain 1 Leader. "+preachertext}},
-  { x: dr, y: 2, name: "Holy Places", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Can upgrade Chapel into [Church], this upgrade costs as much as building a Chapel and doubles weekly Faith production"}},
-  { x: dr, y: 3, name: "Risen Heroes", dependOn: ["Holy Places"], elem: { desc: "", cost: 1, benefit: prelateaviciatext}},
-  { x: dr, y: 4, name: "Divine Herald", dependOn: ["Risen Heroes"], elem: { desc: "", cost: 1, benefit: vicarezekiustext}},
+  { x: dr, y: 0, name: "Recvover the Teachings", dependOn: [], elem: { desc: "", cost: 7, benefit: "+1 Faith/week for Chapel"}},
+  { x: dr, y: 1, name: "Divine Right", dependOn: ["Recvover the Teachings"], elem: { desc: "", cost: 1, benefit: "Unlock [Scrutators] which can be used to increase production of a single building by 50% (rounded up) and gain 1 Scrutator. "+preachertext}},
+  { x: dr, y: 2, name: "Sacred Sites", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Can upgrade Chapel into [Church], this upgrade costs as much as building a Chapel and doubles weekly Faith production"}},
+  { x: dr, y: 3, name: "Champions of the Faith", dependOn: ["Sacred Sites"], elem: { desc: "", cost: 1, benefit: prelateaviciatext}},
+  { x: dr, y: 4, name: "Divine Herald", dependOn: ["Champions of the Faith"], elem: { desc: "", cost: 1, benefit: vicarezekiustext}},
 //  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
 
-  { x: dr+1, y: 2, name: "Priesthood", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Gain +1 Leader"}},
-  { x: dr+1, y: 3, name: "Mending Prayers", dependOn: ["Priesthood"], elem: { desc: "", cost: 1, benefit: "minor defeat clear"}},
-  { x: dr+1, y: 4, name: "Sacred Rejuvenation", dependOn: ["Mending Prayers"], elem: { desc: "", cost: 1, benefit: "major defeat clear"}},
+  { x: dr+1, y: 2, name: "Priesthood", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Gain +1 Scrutator"}},
+  { x: dr+1, y: 3, name: "Mending Prayers", dependOn: ["Priesthood"], elem: { desc: "", cost: 1, benefit: "1/session minor defeat clear"}},
+  { x: dr+1, y: 4, name: "Miraculous Intervention", dependOn: ["Mending Prayers"], elem: { desc: "", cost: 1, benefit: "1/session major defeat clear, also wonder building to make it even better"}},
 
 
-  { x: gov, y: 0, name: "g", dependOn: [], elem: { desc: "", cost: 1, benefit: "Buildings producing basic resources gain +1 basic resource production/week"}},
-  { x: gov-1, y: 1, name: "f", dependOn: ["g"], elem: { desc: "", cost: 1, benefit: "Forests gain +2 Wood/week and +2 Wood from adjacency/week"}},
-  { x: gov, y: 1, name: "q", dependOn: ["g"], elem: { desc: "", cost: 1, benefit: "Quarries gain +2 Stone/week and Core Leechers provide +2 Stone/week to Quarries"}},
-  { x: gov+1, y: 1, name: "m", dependOn: ["g"], elem: { desc: "", cost: 1, benefit: "Forges and Scavenging Yards gain +2 metal/week"}},
-  { x: gov-1, y: 2, name: "", dependOn: ["f"], elem: { desc: "", cost: 1, benefit: "Can upgrade Forest into [Sovereign's Woods]. Upgrading costs as much as building a Forest and doubles the output and adjacency bonus gained. It counts as a forest for adjacency."}},
-  { x: gov, y: 2, name: "", dependOn: ["q"], elem: { desc: "", cost: 1, benefit: "Can upgrade Quarries into [Pits of Spite]. Upgrading costs as much as building a Quarry and doubles the output as well as bonus gained from Core Leechers."}},
-  { x: gov+1, y: 2, name: "", dependOn: ["m"], elem: { desc: "", cost: 1, benefit: "Can upgrade Forges into [Manufactories]. Upgrading costs as much as building a Forge and doubles the metal output as well as the amount of scrapyards it can support."}},
+  { x: gov, y: 0, name: "Blessed Work", dependOn: [], elem: { desc: "", cost: 7, benefit: "Buildings producing basic resources gain +1 basic resource production/week"}},
+  { x: gov-1, y: 1, name: "f", dependOn: ["Blessed Work"], elem: { desc: "", cost: 1, benefit: "Forests gain +2 Wood/week and +2 Wood from adjacency/week"}},
+  { x: gov, y: 1, name: "q", dependOn: ["Blessed Work"], elem: { desc: "", cost: 1, benefit: "Quarries gain +2 Stone/week and Core Leechers provide +2 Stone/week to Quarries"}},
+  { x: gov+1, y: 1, name: "m", dependOn: ["Blessed Work"], elem: { desc: "", cost: 1, benefit: "Forges and Scavenging Yards gain +2 metal/week"}},
+  { x: gov-1, y: 2, name: "f2", dependOn: ["f"], elem: { desc: "", cost: 1, benefit: "Can upgrade Forest into [Sovereign's Woods]. Upgrading costs as much as building a Forest and doubles the output and adjacency bonus gained. It counts as a forest for adjacency."}},
+  { x: gov, y: 2, name: "q2", dependOn: ["q"], elem: { desc: "", cost: 1, benefit: "Can upgrade Quarries into [Pits of Spite]. Upgrading costs as much as building a Quarry and doubles the output as well as bonus gained from Core Leechers."}},
+  { x: gov+1, y: 2, name: "m2", dependOn: ["m"], elem: { desc: "", cost: 1, benefit: "Can upgrade Forges into [Manufactories]. Upgrading costs as much as building a Forge and doubles the metal output as well as the amount of scrapyards it can support."}},
+  { x: gov, y: 3, name: "Heart of Ramatos", dependOn: ["f2","q2","m2"], elem: { desc: "", cost: 1, benefit: "Can build [Heart of Ramatos], a wonder building that enhances the production of all nearby basic resource buildings"}},
 
 //  { x: espc, y: 0, name: "Immoral Acts", dependOn: [], elem: { desc: "In the service of our ultimate goal it sometimes becomes necessary to bend lesser laws... like honesty.", cost: 1, benefit: "Players of at least Rep Rank 2 with Covenant gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Covenant you gain your faction basic resources equal to resources gained divided by playercount instead of gaining any Mindsteel or Infused Wood."}},
 //  { x: espc, y: 1, name: "Embedded Agents", dependOn: ["Immoral Acts"], elem: { desc: "", cost: 1, benefit: "While Spying, when you would normally gain Mindsteel or Infused Wood, the Covenant gain 1 Military"}},
 
-  { x: rec, y: 0, name: "Reconnaissance", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Covenant Scouting], which allows the faction during resource allocation phase to spend 2 Military to Explore a hex adjacent to a conquered one or explored one, revealing the terrain, resources and theme of it. This can be done twice a week."}},
+  { x: rec, y: 0, name: "Reconnaissance", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Covenant Scouting], which allows the faction during resource allocation phase to spend 2 Military to Explore a hex adjacent to a conquered one or explored one, revealing the terrain, resources and theme of it. This can be done twice a week."}},
   { x: rec, y: 1, name: "Exploration", dependOn: ["Reconnaissance"], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+footmentext+" Also unlocks [Patrols] allowing GMs to use Covenant units in random encounters, which grant Soulstone when defeated."}},
-  { x: rec, y: 2, name: "Fast Deployment", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "The first 4 Military spent on Expeditions each week is free. All Covenant get a Free Stride (or other speeds) for half their Speed at the start of combat."}},
+  { x: rec, y: 2, name: "Rapid Deployment", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "The first 4 Military spent on Expeditions each week is free. All Covenant get a Free Stride (or other speeds) for half their Speed at the start of combat."}},
   { x: rec+1, y: 2, name: "Expedition Camps", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "Can construct an [Expedition Camp], a building that provides +2 Expeditions and +2 Scouting for any scouting action within 2 tiles. If the Expedition Camp is fully surrounded by friendly buildings it is automatically scrapped for a recovery of the full cost and without taking a scrapping action"}},
-  { x: rec, y: 3, name: "Search the Divine", dependOn: ["Fast Deployment"], elem: { desc: "", cost: 1, benefit: "Expeditions have a 10% chance of finding a [Shard of Ramathos], needed for high level research and buildings"}},
-  { x: rec, y: 4, name: "Eyes of Ramatos", dependOn: ["Search the Divine"], elem: { desc: "", cost: 1, benefit: "Allows constructing the [Eyes of Ramatos] a building which reveals all hexes within a radius of 5 and in the same radius any Covenant has Perfect True Seeing, which works like True Seeing but automatically succeeds on all counteract checks against non-perfect effects"}},
-  { x: rec+1, y: 5, name: "The Awakening", dependOn: ["Search the Divine"], elem: { desc: "Special: Requires the construction of the 5 ramatos-tier wonder buildings.", cost: 0, benefit: "Obtain the [Rites of Awakening]"}},
+  { x: rec, y: 3, name: "Seek the Divine", dependOn: ["Rapid Deployment"], elem: { desc: "", cost: 1, benefit: "Expeditions have a 10% chance of finding a [Shard of Ramathos], needed for high level research and buildings. Sessions centered around searching for Ramatos can now also give a Shard of Ramatos"}},
+  { x: rec, y: 4, name: "Eyes of Ramatos", dependOn: ["Seek the Divine"], elem: { desc: "", cost: 1, benefit: "Allows constructing the [Eyes of Ramatos] a wonder building which reveals all hexes within a radius of 5 and in the same radius any Covenant has Perfect True Seeing, which works like True Seeing but automatically succeeds on all counteract checks against non-perfect effects"}},
+  { x: rec+1, y: 5, name: "The Awakening", dependOn: ["Seek the Divine"], elem: { desc: "Special: Requires the construction of at least 3 wonder buildings.", cost: 0, benefit: "Obtain the [Rites of Awakening]"}},
   { x: rec+1, y: 6, name: "Resurrection", dependOn: ["The Awakening"], elem: {desc: "Special: Requires [Rites of Awakening] to have been performed", cost: 0, benefit: "After completing the [Through the Gates of Hell] raid, Ramatos walks among his followers once more"}},
 
-  { x: mil, y: 0, name: "Standing Military", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way."}},
-  { x: mil, y: 1, name: "Mandatory Service", dependOn: ["Standing Military"], elem: { desc: "", cost: 1, benefit: "Barracks require +1 Worker/week and produce +2 Military/week"}},
-  { x: mil+1, y: 1, name: "Archery", dependOn: ["Standing Military"], elem: { desc: "", cost: 1, benefit: longbowmentext}},
-  { x: mil+1, y: 2, name: "Cavalry", dependOn: ["Mandatory Service"], elem: { desc: "", cost: 1, benefit: knighttext}},
+  { x: mil, y: 0, name: "Defenders of the Faith", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
+  { x: mil, y: 1, name: "Mandatory Service", dependOn: ["Defenders of the Faith"], elem: { desc: "", cost: 1, benefit: "Barracks require +1 Worker/week and produce +2 Military/week"}},
+  { x: mil+1, y: 1, name: "Guided Aim", dependOn: ["Defenders of the Faith"], elem: { desc: "", cost: 1, benefit: longbowmentext}},
+  { x: mil+1, y: 2, name: "Horsemanship", dependOn: ["Mandatory Service"], elem: { desc: "", cost: 1, benefit: knighttext}},
   { x: mil, y: 2, name: "Strongholds", dependOn: ["Mandatory Service"], elem: { desc: "", cost: 1, benefit: "Can upgrade Barracks into [Stronghold], this upgrade costs as much as building a Barracks and doubles weekly worker cost and Military production"}},
-  { x: mil+1, y: 3, name: "Phalanx", dependOn: ["Strongholds"], elem: { desc: "", cost: 1, benefit: phalanxtext}},
-  { x: mil, y: 3, name: "idk", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: mil+1, y: 4, name: "Holy Avengers", dependOn: ["idk","Risen Heroes"], elem: { desc: "", cost: 1, benefit: paladintext}},
+  { x: mil+1, y: 3, name: "Holy Vanguard", dependOn: ["Strongholds"], elem: { desc: "", cost: 1, benefit: phalanxtext}},
+  { x: mil, y: 3, name: "Shield of Ramatos", dependOn: ["Strongholds"], elem: { desc: "", cost: 1, benefit: "Unlock the [Shield of Ramatos] wonder building, which provides enhancements to the military"}},
+  { x: mil+1, y: 4, name: "Holy Avengers", dependOn: ["Shield of Ramatos","Champions of the Faith"], elem: { desc: "", cost: 1, benefit: paladintext}},
 /*
 
 
