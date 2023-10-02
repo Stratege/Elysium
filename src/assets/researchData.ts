@@ -21,7 +21,7 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: gp-1, y: 0, name: "Gnosis Principles", dependOn: [], elem: { desc: "", cost: 4, benefit: "+2 Gnosis/week from Labs. "+prosytext}},
   { x: scry, y: 0, name: "Scrying", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Nihilim Scouting], which allows the faction during resource allocation phase to Scry a hex adjacent to a conquered one, revealing the terrain, resources and theme of it"}},
   { x: sa, y: 0, name: "Scientific Approach", dependOn: [], elem: { desc: "", cost: 4, benefit: "Parties gain 1 Gnosis whenever they non-violently interact with a mystery. Gnosis carrying capacity increases by 0.25 per hour"}},
-  { x: bt, y: 0, name: "Basic Tactics", dependOn: [], elem: { desc: "<see doc>", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
+  { x: bt, y: 0, name: "Basic Tactics", dependOn: [], elem: { desc: "<see doc>", cost: 5, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
   { x: gp-1, y: 1, name: "Telepathy", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "Labs that are exactly 2 hexes away from another lab gain another 3 Gnosis/week. 1/session when entering from the Nihilim entrance or of Rep 4 Nihi a PC can enter telepathic communication with another willing character for 1 hour, sight (or similiar) is needed to establish but not maintain the connection."}},
   { x: gp, y: 1, name: "Arcane Channeling", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: scry, y: 2, name: "Precognition", dependOn: ["Scrying","Telepathy"], elem: { desc: "", cost: 1, benefit: "When adventuring in a scried hex, each character can 1/session upgrade the result of a check OR gain information as if they had done an action without committing to the action"}},
@@ -72,10 +72,10 @@ const footmentext = "You start with the [Knight Exemplar] unlocked, a defender u
 const preachertext = "Unlock the [Preacher], a holy support unit which costs 1 Miliatry and  1 Faith to deploy and brings back 2 Basic Resources + 1 for each Defender unit on the same expedition"
 const longbowmentext = "Unlock the [Exemplar Harbinger], a ranged unit that costs 2 Military to deploy and brings back 2 Workers. In the following week, for each Exemplar Harbinger deployed, players can call in a volley strike once"
 const phalanxtext = "Unlock the [Exemplar Bastion], a defender unit that costs 3 Military to deploy and brings back 5 basic resources"
-const prelateaviciatext = "Unlock [Prelate Avicia] - [HERO, Holy] (can only deploy one per week) 4 Military, each other unit on the expedition collects +1 resource of a type it already collects"
-const vicarezekiustext = "Unlock [Vicar Ezekius] - [HERO, Holy] (can only deploy one per week) 5 Military, the expedition can conquer a hex"
+const prelateaviciatext = "Unlock [Prelate Avicia], a holy HERO unit (can only deploy one per week) for 4 Military, each other unit on the expedition collects +1 resource of a type it already collects"
+const vicarezekiustext = "Unlock [Vicar Ezekius], a holy HERO unit (can only deploy one per week) for 5 Military allowing the expedition to conquer a hex"
 const paladintext = "Unlock the [Holy Avenger], a holy unit that costs 1 Soulstone and 3 Military to deploy and brings back 8 Basic Resources as well as bringing 1 Soulstone for each non-Holy Avenger Holy unit"
-const knighttext = "Unlock the [Exemplar Vengers], a cavalery unit which costs 2 Military to deploy and brings back 2 Workers and 1 Basic Resource"
+const knighttext = "Unlock the [Exemplar Vengers], a cavalry unit which costs 2 Military to deploy and brings back 2 Workers and 1 Basic Resource. In the following week, for each Exemplar Venger deployed, players can get information on an unvisited room in the session once"
 
 
 const dr = 2
@@ -86,7 +86,7 @@ const gov = 7
 let covenantInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
-  { x: dr, y: 0, name: "Recvover the Teachings", dependOn: [], elem: { desc: "", cost: 7, benefit: "+1 Faith/week for Chapel"}},
+  { x: dr, y: 0, name: "Recvover the Teachings", dependOn: [], elem: { desc: "", cost: 1, benefit: "+1 Faith/week for Chapel"}},
   { x: dr, y: 1, name: "Divine Right", dependOn: ["Recvover the Teachings"], elem: { desc: "", cost: 1, benefit: "Unlock [Scrutators] which can be used to increase production of a single building by 50% (rounded up) and gain 1 Scrutator. "+preachertext}},
   { x: dr, y: 2, name: "Sacred Sites", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Can upgrade Chapel into [Church], this upgrade costs as much as building a Chapel and doubles weekly Faith production"}},
   { x: dr, y: 3, name: "Champions of the Faith", dependOn: ["Sacred Sites"], elem: { desc: "", cost: 1, benefit: prelateaviciatext}},
@@ -94,8 +94,8 @@ let covenantInternal: TreeNode<{desc : string,
 //  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
 
   { x: dr+1, y: 2, name: "Priesthood", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Gain +1 Scrutator"}},
-  { x: dr+1, y: 3, name: "Mending Prayers", dependOn: ["Priesthood"], elem: { desc: "", cost: 1, benefit: "1/session minor defeat clear"}},
-  { x: dr+1, y: 4, name: "Miraculous Intervention", dependOn: ["Mending Prayers"], elem: { desc: "", cost: 1, benefit: "1/session major defeat clear, also wonder building to make it even better"}},
+  { x: dr+1, y: 3, name: "Mending Prayers", dependOn: ["Priesthood"], elem: { desc: "", cost: 25, benefit: "1/session minor defeat clear"}},
+  { x: dr+1, y: 4, name: "Miraculous Intervention", dependOn: ["Mending Prayers"], elem: { desc: "", cost: 40, benefit: "1/session major defeat clear, also wonder building to make it even better"}},
 
 
   { x: gov, y: 0, name: "Blessed Work", dependOn: [], elem: { desc: "", cost: 7, benefit: "Buildings producing basic resources gain +1 basic resource production/week"}},
@@ -284,7 +284,7 @@ function cost_override(newCost : number[]) {
     cost : number,
     benefit : string}>) {
     const tech2 = {...tech}
-    tech2.elem.cost = newCost[tech.y] ?? 0
+    tech2.elem.cost = tech.elem.cost != 1 ? tech.elem.cost : newCost[tech.y] ?? 0
     return tech2
   }
 }
