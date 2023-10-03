@@ -25,9 +25,9 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: gp-1, y: 1, name: "Telepathy", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "Labs that are exactly 2 hexes away from another lab gain another 3 Gnosis/week. 1/session when entering from the Nihilim entrance or of Rep 4 Nihi a PC can enter telepathic communication with another willing character for 1 hour, sight (or similiar) is needed to establish but not maintain the connection."}},
   { x: gp, y: 1, name: "Arcane Channeling", dependOn: ["Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "The Nihilim may now overcharge a building during the Resource Allocation phase, making it immediately produce its normal production, however the next two times it would normally produce resources it does not. An overcharged building can not be overcharged again until this time has passed."}},
   { x: scry, y: 2, name: "Precognition", dependOn: ["Scrying","Telepathy"], elem: { desc: "", cost: 1, benefit: "When adventuring in a scried hex, each character can 1/session upgrade the result of a check OR gain information as if they had done an action without committing to the action"}},
-  { x: sa+1, y: 1, name: "Expectations of High Quality Outcomes via the Use of Logic", dependOn: ["Scientific Approach"], elem: { desc: "Nihilim cultivate a mindset that others might refer to as 'having faith in logic'", cost: 1, benefit: ""}},
+  { x: sa+1, y: 1, name: "Expectations of High Quality Outcomes via the Use of Logic", dependOn: ["Scientific Approach"], elem: { desc: "Nihilim cultivate a mindset that others might refer to as 'having faith in logic'", cost: 1, benefit: "Whenever Nihilim spend at least 5 Gnosis on something they gain 2 Gnosis."}},
   { x: sa, y: 1, name: "Calculated Efficiency", dependOn: ["Scientific Approach"], elem: { desc: "<see doc>", cost: 1, benefit: "+1 wood/metal/stone per week from any building that produces that resources weekly"}},
-  { x: gp-1, y: 2, name: "Telekinses", dependOn: ["Telepathy"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: gp-1, y: 2, name: "Telekinses", dependOn: ["Telepathy"], elem: { desc: "", cost: 1, benefit: "Anytime a building is exactly 2 hexes from a building of the same type its output increases by 3. This does not stack with the benefits from Telepathy"}},
   { x: gp-2, y: 2, name: "Mindforging", dependOn: ["Telepathy","Expectations of High Quality Outcomes via the Use of Logic"], elem: { desc: "<see doc>", cost: 1, benefit: "All Nihilim gain a +2 faction bonus to Will saves. Steelsinger consumes 5 more metal/week and produces 5 more Mindsteel/week. "+mindbladetext}},
   { x: gp, y: 2, name: "Arcane Warfare", dependOn: ["Arcane Channeling"], elem: { desc: "", cost: 1, benefit: "Can now overcharge a unit type, making it produce 50% more resources this week but be unable to be deployed for the next 2 weeks afterwards. "+ministerofpaintext}},
   { x: sa+1, y: 2, name: "Indoctrination", dependOn: ["Expectations of High Quality Outcomes via the Use of Logic"], elem: { desc: "<see doc>", cost: 1, benefit: ""+wraithtext}},
@@ -40,7 +40,7 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: scry+1, y: 1, name: "Farscry", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "when scouting can instead declare a resource, terrain or theme and find a hex where it is abundant. Does NOT work for finding Leylines"}},
   { x: scry+1, y: 2, name: "Halls of Divination", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "Unlocks [Halls of Divination], a building that allows 2 more Scryings per week"}},
   { x: gp, y: 3, name: "Mystic Focus", dependOn: ["Arcane Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: gp, y: 4, name: "Gnosis Truths", dependOn: ["Mystic Focus"], elem: { desc: "", cost: 1, benefit: "Unlocks the [], a wonder-type building that provides research benefits"}},
+  { x: gp, y: 4, name: "Gnosis Truths", dependOn: ["Mystic Focus"], elem: { desc: "", cost: 1, benefit: "Unlocks the [?], a wonder-type building that provides research benefits"}},
   { x: sa-1, y: 4, name: "Scientific Treatment", dependOn: ["Total Project Awareness"], elem: { desc: "A detached analysis of the patient's illness and a willingness to do structured experiments for cures helps treat many things a lesser healer would consider fatal - even if it sometimes hastens death along in too severe cases.", cost: 1, benefit: "Once per session per player, if they would receive a minor defeat instead they don't. If Arcane Warfare is researched, also unlock "+atrocitustext}},
   { x: sa-1, y: 5, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "Maybe it’s the lack of irrational emotions that turns the Nihilim into such technically skilled doctors. When knowledge increases in phase with technology, even death can be defeated. This knowledge will turn Nihilim doctors into excellent healers.", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a wonder-type building that further boosts this benefit"}},
   { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Indoctrination"], elem: { desc: "The toleration for the ones that doesn’t follow the code of the Nihilim indoctrination is weakening. Either the people choose the calculated and cold path that they once chose to walk, or they will be banished.", cost: 1, benefit: "Workers producing buildings (including HQ) produce -1 Worker per week. Any building producing basic resources or Gnosis increases such production by 3."+spectertext}},
@@ -188,14 +188,41 @@ Thul Tree:
   5. Resources (simple)
   => 3 layers
  */
+//Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)
+//Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+whiptext+"\n\nAlso unlocks [Patrols] allowing GMs to use Nihilim units in random encounters, which grant Mindsteel when defeated.
+/*
+  Conquest
+    - When Conquering can expend resources to gain blood
+
+Warrior Code
+Raiding Parties
+Battle Ceremonies
+Scouting
+Forced March
+
+Blood Sacrifice - Increase blood gain
+Desecrate -
+
+Landbreaking
+Magmaforge
+Chant of Growth
+
+Deep Scout
+Outposts - Can build a camp in scouted but unconquered terrain to gain resources based on tile. Sessions in adjacent tiles benefit from +1 Small Cave. Automatically scrapped when 2 buildings are adjacent to it. Can not be built within the influence area of a camp.
+ */
+//const pow = 3;
 const thulInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
   { x: 0, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+/*  { x: pow, y: 1, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
+  { x: pow, y: 3, name: "Rite of Imbuement", dependOn: ["Rite of Empowerment"], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
+  { x: pow, y: 5, name: "Rite of Elemental Perfection", dependOn: ["Rite of Imbuement"], elem: { desc: "Perfection is reached when the elemental energies are in a precise balance, always shfiting and changing but always in harmony. SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
+  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
   //  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
-  //{ x: 4, y: 4, name: "Perpetual Renewal", dependOn: [], elem: { desc: "", cost: 1, benefit: "Pillars of sacrifice produce 5 blood/week. "}},
-  //{ x: 4, y: 5, name: "Eternal Now", dependOn: ["Perpetual Renewal"], elem: { desc: "", cost: 1, benefit: "After completing the [Murder the Gods and Topple Their Thrones] raid all divine influences are banished from Elysium and with them all stagnancy"}}
-]
+  { x: pow, y: 6, name: "Perpetual Renewal", dependOn: ["Rite of Elemental Perfection"], elem: { desc: "", cost: 1, benefit: "Pillars of sacrifice produce 5 blood/week. "}},
+  { x: pow, y: 7, name: "Eternal Now", dependOn: ["Perpetual Renewal"], elem: { desc: "", cost: 1, benefit: "After completing the [Murder the Gods and Topple Their Thrones] raid all divine influences are banished from Elysium and with them all stagnancy"}}
+*/]
 
 function fix (x : TreeNode<{desc : string,
   cost : number,
@@ -371,30 +398,7 @@ mechanics:
  */
 
 /*
-portal subsystem:
-  - depthcrawl
-  - 1 encounter turn per move
-- no direction / divination / prophecy / teleportation
-- spellcasting is "golden opportunity" (unless it's Heal or Dmg spells)
-- college automatically gains deeds and can reroll a check made with college wayfinder and choose a result and can ignore first corruption result
-- weird places (but unimportant)
-
-  rations spoil and rest is impossible
-  4 things you can do:
-    - stay where you are at
-    - go deeper
-    -
-    -
-  Corruptions is permanent
-  Find Astralium which provides buffs
-
- */
-
-/*
-Expectations of High Quality Outcomes via the Use of Logic -
 Indoctrination    -
-Telekinesis       - Mana Channeling for moving? (The power of Telekinesis makes it possible for the Nihilim to move objects with mere thought.)
 Mystic Focus      -
-Gnosis Truths     - Mana Channeling Wonder Building
 
  */
