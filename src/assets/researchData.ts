@@ -110,7 +110,7 @@ let covenantInternal: TreeNode<{desc : string,
 //  { x: espc, y: 0, name: "Immoral Acts", dependOn: [], elem: { desc: "In the service of our ultimate goal it sometimes becomes necessary to bend lesser laws... like honesty.", cost: 1, benefit: "Players of at least Rep Rank 2 with Covenant gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Covenant you gain your faction basic resources equal to resources gained divided by playercount instead of gaining any Mindsteel or Infused Wood."}},
 //  { x: espc, y: 1, name: "Embedded Agents", dependOn: ["Immoral Acts"], elem: { desc: "", cost: 1, benefit: "While Spying, when you would normally gain Mindsteel or Infused Wood, the Covenant gain 1 Military"}},
 
-  { x: rec, y: 0, name: "Reconnaissance", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Covenant Scouting], which allows the faction during resource allocation phase to spend 2 Military to Explore a hex adjacent to a conquered one or explored one, revealing the terrain, resources and theme of it. This can be done twice a week."}},
+  { x: rec, y: 0, name: "Reconnaissance", dependOn: [], elem: { desc: "", cost: 4, benefit: "Unlock [Covenant Scouting], which allows the faction during resource allocation phase to spend 2 Military to Explore a hex adjacent to a conquered one or explored one, revealing the terrain, resources and theme of it. This can be done twice a week."}},
   { x: rec, y: 1, name: "Exploration", dependOn: ["Reconnaissance"], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+footmentext+" Also unlocks [Patrols] allowing GMs to use Covenant units in random encounters, which grant Soulstone when defeated."}},
   { x: rec, y: 2, name: "Rapid Deployment", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "The first 4 Military spent on Expeditions each week is free. All Covenant get a Free Stride (or other speeds) for half their Speed at the start of combat."}},
   { x: rec+1, y: 2, name: "Expedition Camps", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "Can construct an [Expedition Camp], a building that provides +2 Expeditions and +2 Scouting for any scouting action within 2 tiles. If the Expedition Camp is fully surrounded by friendly buildings it is automatically scrapped for a recovery of the full cost and without taking a scrapping action"}},
@@ -119,8 +119,8 @@ let covenantInternal: TreeNode<{desc : string,
   { x: rec+1, y: 5, name: "The Awakening", dependOn: ["Seek the Divine"], elem: { desc: "Special: Requires the construction of at least 3 wonder buildings.", cost: 0, benefit: "Obtain the [Rites of Awakening]"}},
   { x: rec+1, y: 6, name: "Resurrection", dependOn: ["The Awakening"], elem: {desc: "Special: Requires [Rites of Awakening] to have been performed", cost: 0, benefit: "After completing the [Through the Gates of Hell] raid, Ramatos walks among his followers once more"}},
 
-  { x: mil, y: 0, name: "Defenders of the Faith", dependOn: [], elem: { desc: "", cost: 5, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
-  { x: mil, y: 1, name: "Mandatory Service", dependOn: ["Defenders of the Faith"], elem: { desc: "", cost: 1, benefit: "Barracks require +1 Worker/week and produce +2 Military/week"}},
+  { x: mil, y: 0, name: "Defenders of the Faith", dependOn: [], elem: { desc: "", cost: 4, benefit: "Unlock [Conquest], allowing the faction to expend military to conquer dungeon hexes. Cost starts at 5 military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
+  { x: mil, y: 1, name: "Mandatory Service", dependOn: ["Defenders of the Faith"], elem: { desc: "", cost: 1, benefit: "Barracks require +1 Worker/week and produce +2 Military/week and +1 Faith/week"}},
   { x: mil+1, y: 1, name: "Guided Aim", dependOn: ["Defenders of the Faith"], elem: { desc: "", cost: 1, benefit: longbowmentext}},
   { x: mil+1, y: 2, name: "Horsemanship", dependOn: ["Mandatory Service"], elem: { desc: "", cost: 1, benefit: knighttext}},
   { x: mil, y: 2, name: "Strongholds", dependOn: ["Mandatory Service"], elem: { desc: "", cost: 1, benefit: "Can upgrade Barracks into [Stronghold], this upgrade costs as much as building a Barracks and doubles weekly worker cost and Military production"}},
@@ -326,7 +326,7 @@ function cost_override(newCost : number[]) {
   }
 }
 nihilimInternal = nihilimInternal.map(cost_override([4,6,10,17,28,47,79,79]))
-covenantInternal = covenantInternal.map(cost_override([7,11,18,30,51]))
+covenantInternal = covenantInternal.map(cost_override([6,9,18,30,51]))
 
 printCosts("nihi",nihilimInternal)
 printCosts("cove",covenantInternal)
