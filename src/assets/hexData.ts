@@ -33,17 +33,19 @@ export const realEntries : {[x:string] : entry} = {
   "5,18": {
     faction: 'Dungeon',
     owningGM: 'Stratege',
-    note: 'Lich; Other GMs feel free to use this hex after asking',
+    note: 'Lich Lord Zargothrax encased in Crystal; Other GMs feel free to use this hex after asking',
   },
   "6,5": {
     faction: 'Cove',
     owningGM: 'Minioris',
     terrain: 'Plentiful Dead',
+    building: 'Chapel',
   },
   "6,18": {
     faction: 'Nihi',
     owningGM: 'Stratege',
     terrain: 'Plentiful Metal',
+    building: 'Lab',
   },
   "7,5": {
     faction: 'Dungeon',
@@ -82,6 +84,12 @@ export const realEntries : {[x:string] : entry} = {
     owningGM: 'Darthgorloc',
     note: "cave of the endless, other GMs can take it, just ask"
   },
+  "4,20": {
+    faction: 'Nihi',
+    owningGM: 'Stratege',
+    terrain: 'Cryochambers',
+    note: 'The Dragon infests a mechanism here...'
+  }
 }
 
 Object.keys(realEntries).forEach(str => {
