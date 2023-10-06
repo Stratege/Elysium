@@ -89,7 +89,11 @@ export const realEntries : {[x:string] : entry} = {
     owningGM: 'Stratege',
     terrain: 'Cryochambers',
     note: 'The Dragon infests a mechanism here...'
-  }
+  },
+  "11,10": {
+    faction: 'Dragon',
+    note: 'Barashk gaining The Dragon\'s Embrace',
+  },
 }
 
 Object.keys(realEntries).forEach(str => {
