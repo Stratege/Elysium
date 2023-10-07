@@ -210,19 +210,46 @@ Chant of Growth
 Deep Scout
 Outposts - Can build a camp in scouted but unconquered terrain to gain resources based on tile. Sessions in adjacent tiles benefit from +1 Small Cave. Automatically scrapped when 2 buildings are adjacent to it. Can not be built within the influence area of a camp.
  */
-//const pow = 3;
+const pow = 3;
+const war = 0;
+const raid = 1;
+const blood = 2;
+const unknown = 4;
 const thulInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
-  { x: 0, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
-/*  { x: pow, y: 1, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
+  { x: war, y: 0, name: "Warfare", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
+  { x: war, y: 2, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex may "}},
+  { x: war+1, y: 2, name: "", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: war, y: 4, name: "Forced March", dependOn: [], elem: { desc: "", cost: 1, benefit: "Reduce the cost increase of additional conquests from 5 to 3"}},
+
+  { x: raid, y: 0, name: "Raiding Parties", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+whiptext+"\n\nAlso unlocks [Patrols] allowing GMs to use Nihilim units in random encounters, which grant Mindsteel when defeated."}},
+  { x: raid, y: 2, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "For every 3 units on an Expedition, Scout a hex adjacent to an already conquered hex"}},
+  { x: raid, y: 4, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+
+  { x: unknown, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Terraform hex"}},
+  { x: unknown+1, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Convert Base Resource into other at 5:4 rate"}},
+  { x: unknown+2, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Efficiency gains of some sort"}},
+
+
+  { x: blood, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Increase the amount of blood per hour of game by 1"}},
+  { x: blood, y: 2, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Can upgrade Pillars of Sacrifice into Big Pillars of Sacrifice. Costs as much as a Pillar, gives the same amount of blood again."}},
+  { x: blood, y: 4, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Pillars gain +3 blood/week, big Pillars +6 blood/week"}},
+
+  { x: pow, y: 1, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
   { x: pow, y: 3, name: "Rite of Imbuement", dependOn: ["Rite of Empowerment"], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
   { x: pow, y: 5, name: "Rite of Elemental Perfection", dependOn: ["Rite of Imbuement"], elem: { desc: "Perfection is reached when the elemental energies are in a precise balance, always shfiting and changing but always in harmony. SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
+/*
   { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
-  //  { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+    { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+    { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+    { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+    { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+    { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+*/
   { x: pow, y: 6, name: "Perpetual Renewal", dependOn: ["Rite of Elemental Perfection"], elem: { desc: "", cost: 1, benefit: "Pillars of sacrifice produce 5 blood/week. "}},
   { x: pow, y: 7, name: "Eternal Now", dependOn: ["Perpetual Renewal"], elem: { desc: "", cost: 1, benefit: "After completing the [Murder the Gods and Topple Their Thrones] raid all divine influences are banished from Elysium and with them all stagnancy"}}
-*/]
+]
 
 function fix (x : TreeNode<{desc : string,
   cost : number,
