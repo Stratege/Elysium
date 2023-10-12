@@ -210,22 +210,37 @@ Chant of Growth
 Deep Scout
 Outposts - Can build a camp in scouted but unconquered terrain to gain resources based on tile. Sessions in adjacent tiles benefit from +1 Small Cave. Automatically scrapped when 2 buildings are adjacent to it. Can not be built within the influence area of a camp.
  */
+
+/*
+Scouting - done
+Conquest - done
+Wonders
+Ancestry Transfer
+Expeditions (Patrols) - done
+Espionage - done
+Victory - done
+ */
 const pow = 3;
 const war = 0;
 const raid = 1;
 const blood = 2;
-const unknown = 4;
+const bloodrite = 4;
+const tesp = 5;
+//const scout = 6;
+const unknown = 7;
 const thulInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
   { x: war, y: 0, name: "Warfare", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
-  { x: war, y: 2, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex may "}},
+  { x: war, y: 2, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex be exploited for 5 basic resources of any kind or 3 blood. An exploited does not provide weekly production for 2 weeks."}},
   { x: war+1, y: 2, name: "", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
   { x: war, y: 4, name: "Forced March", dependOn: [], elem: { desc: "", cost: 1, benefit: "Reduce the cost increase of additional conquests from 5 to 3"}},
 
-  { x: raid, y: 0, name: "Raiding Parties", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+whiptext+"\n\nAlso unlocks [Patrols] allowing GMs to use Nihilim units in random encounters, which grant Mindsteel when defeated."}},
+  { x: raid, y: 0, name: "Raiding Parties", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+whiptext+"\n\nAlso unlocks [Patrols] allowing GMs to use Thul units in random encounters, which grant Infused Wood when defeated."}},
   { x: raid, y: 2, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "For every 3 units on an Expedition, Scout a hex adjacent to an already conquered hex"}},
   { x: raid, y: 4, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+
+  { x: bloodrite, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "At the start of a session may become drained 3 to gain the faction 2 blood. This drained stacks with anything and can not be reduced during the session. The blood is seperate from the hourly blood cap."}},
 
   { x: unknown, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Terraform hex"}},
   { x: unknown+1, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Convert Base Resource into other at 5:4 rate"}},
@@ -233,12 +248,16 @@ const thulInternal: TreeNode<{desc : string,
 
 
   { x: blood, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Increase the amount of blood per hour of game by 1"}},
-  { x: blood, y: 2, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Can upgrade Pillars of Sacrifice into Big Pillars of Sacrifice. Costs as much as a Pillar, gives the same amount of blood again."}},
+  { x: blood, y: 2, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Can upgrade Pillars of Sacrifice into Big Pillars of Sacrifice. Costs twice as much as a Pillar and gives the same amount of blood again as a Pillar of Sacrifice."}},
   { x: blood, y: 4, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Pillars gain +3 blood/week, big Pillars +6 blood/week"}},
 
-  { x: pow, y: 1, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
-  { x: pow, y: 3, name: "Rite of Imbuement", dependOn: ["Rite of Empowerment"], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
-  { x: pow, y: 5, name: "Rite of Elemental Perfection", dependOn: ["Rite of Imbuement"], elem: { desc: "Perfection is reached when the elemental energies are in a precise balance, always shfiting and changing but always in harmony. SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: ""}},
+  { x: tesp, y: 0, name: "Espionage", dependOn: [], elem: { desc: "", cost: 1, benefit: "Players of at least Rep Rank 2 with Thul gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Nihilim means you gain 3 Blood for the faction instead of Soulstone/Mindsteel."}},
+  { x: tesp, y: 1, name: "", dependOn: ["Espionage"], elem: { desc: "", cost: 1, benefit: "When engaging in Espionage, whenever you would get reputation you may instead gain Thul Reputation"}},
+
+
+  { x: pow, y: 1, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: "+1 to all production for the HQ"}},
+  { x: pow, y: 3, name: "Rite of Imbuement", dependOn: ["Rite of Empowerment"], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: "+1 to all production  (other than weekly blood), +3 blood from Pillars of Sacrifice"}},
+  { x: pow, y: 5, name: "Rite of Elemental Perfection", dependOn: ["Rite of Imbuement"], elem: { desc: "Perfection is reached when the elemental energies are in a precise balance, always shfiting and changing but always in harmony. SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: "+1 to all production, +3 blood from Pillars of Sacrifice"}},
 /*
   { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
     { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
