@@ -56,7 +56,7 @@ export const realEntries : {[x:string] : entry} = {
     owningGM: 'Minioris',
   },
   "6,6": {
-    faction: 'Dungeon',
+    faction: 'Cove',
     owningGM: 'Stratege',
     terrain:'Dungeonstone',
     note:'Dragonspawn here. Available for anyone to run, but please ask'
@@ -64,6 +64,7 @@ export const realEntries : {[x:string] : entry} = {
   "6,20": {
     faction: 'Dungeon',
     owningGM: 'Helian',
+    note: 'Entrance of Possession\'s Domain',
   },
   "7,19": {
     faction: 'Dungeon',
@@ -72,6 +73,7 @@ export const realEntries : {[x:string] : entry} = {
   "7,20": {
     faction: 'Dungeon',
     owningGM: 'Helian',
+    note: 'Tower of Descent, Floor -1\n',
   },
   "19,5": {
     faction: 'Thul',
@@ -88,6 +90,7 @@ export const realEntries : {[x:string] : entry} = {
     faction: 'Nihi',
     owningGM: 'Stratege',
     terrain: 'Cryochambers',
+    building: 'AC',
     note: 'The Dragon infests a mechanism here...'
   },
   "11,10": {
