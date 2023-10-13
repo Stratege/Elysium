@@ -225,39 +225,56 @@ const war = 0;
 const raid = 1;
 const blood = 2;
 const bloodrite = 4;
-const tesp = 5;
-//const scout = 6;
+const tesp = 6;
+const terraform = 5;
 const unknown = 7;
+
+const rawpawtext = ""
+
 const thulInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
   { x: war, y: 0, name: "Warfare", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
-  { x: war, y: 2, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex be exploited for 5 basic resources of any kind or 3 blood. An exploited does not provide weekly production for 2 weeks."}},
-  { x: war+1, y: 2, name: "", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: war, y: 4, name: "Forced March", dependOn: [], elem: { desc: "", cost: 1, benefit: "Reduce the cost increase of additional conquests from 5 to 3"}},
+  { x: war, y: 1, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex it can be exploited for 5 basic resources of any kind or 3 blood. An exploited does not provide weekly production for 2 weeks."}},
+  { x: war, y: 2, name: "Forced March", dependOn: ["Spoils of War"], elem: { desc: "", cost: 1, benefit: "Reduce the cost increase of additional conquests from 5 to 3"}},
 
-  { x: raid, y: 0, name: "Raiding Parties", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+whiptext+"\n\nAlso unlocks [Patrols] allowing GMs to use Thul units in random encounters, which grant Infused Wood when defeated."}},
-  { x: raid, y: 2, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "For every 3 units on an Expedition, Scout a hex adjacent to an already conquered hex"}},
-  { x: raid, y: 4, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: war+0.5, y: 3, name: "Wonder 1", dependOn: ["Forced March", "r3"], elem: { desc: "", cost: 1, benefit: ""}},
 
-  { x: bloodrite, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "At the start of a session may become drained 3 to gain the faction 2 blood. This drained stacks with anything and can not be reduced during the session. The blood is seperate from the hourly blood cap."}},
+  { x: raid, y: 0, name: "Raiding Parties", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Expeditions], which allow sending out a squad of units on an Expedition during resource allocation. You can send a single Expedition per week of up to 6 Units. "+rawpawtext+"\n\nAlso unlocks [Patrols] allowing GMs to use Thul units in random encounters, which grant Infused Wood when defeated."}},
+  { x: raid, y: 1, name: "", dependOn: ["Raiding Parties"], elem: { desc: "", cost: 1, benefit: "For every 3 units on an Expedition, Scout a hex adjacent to an already conquered hex"}},
+  { x: raid, y: 2, name: "r3", dependOn: ["Raiding Parties"], elem: { desc: "", cost: 1, benefit: ""}},
 
-  { x: unknown, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Terraform hex"}},
+  { x: raid+0.5, y: 3, name: "Wonder 2", dependOn: ["r3","b3"], elem: { desc: "", cost: 1, benefit: ""}},
+
+  { x: blood, y: 0, name: "b", dependOn: [], elem: { desc: "", cost: 1, benefit: "Increase the amount of blood per hour of game by 1"}},
+  { x: blood, y: 1, name: "b2", dependOn: ["b"], elem: { desc: "", cost: 1, benefit: "Can upgrade Pillars of Sacrifice into Big Pillars of Sacrifice. Costs twice as much as a Pillar and gives the same amount of blood again as a Pillar of Sacrifice."}},
+  { x: blood, y: 2, name: "b3", dependOn: ["b2"], elem: { desc: "", cost: 1, benefit: "Pillars gain +3 blood/week, big Pillars +6 blood/week"}},
+
+
+  { x: bloodrite, y: 0, name: "br1", dependOn: [], elem: { desc: "", cost: 1, benefit: "At the start of a session may become drained 3 to gain the faction 2 blood if you do not suffer a major defeat during the session. This drained stacks with anything and can not be reduced during the session. The blood is seperate from the hourly blood cap."}},
+  { x: bloodrite, y: 1, name: "Bleed on the Divine", dependOn: ["br1"], elem: { desc: "", cost: 1, benefit: "Once per session adventurers with at least Rep 2 with the Thul may ritualistically spread Blood on a hex they are in. Doing so costs 5 Blood from the current game, but transforms the hex into one suited for a Pillar of Sacrifice building."}},
+  { x: bloodrite, y: 2, name: "br3", dependOn: ["Bleed on the Divine"], elem: { desc: "", cost: 1, benefit: ""}},
+
+  { x: bloodrite+0.5, y: 3, name: "Wonder 3", dependOn: ["br3","tf3"], elem: { desc: "", cost: 1, benefit: ""}},
+
+  { x: terraform, y: 0, name: "Outpost", dependOn: [], elem: { desc: "", cost: 1, benefit: "Can build an [Outpost], a cheap building that automatically scouts an adjacent hex of choice. Every following week it scouts another adjacent hex to itself."}},
+  { x: terraform, y: 1, name: "", dependOn: ["Outpost"], elem: { desc: "", cost: 1, benefit: "When scrapping an Outpost that has stood for at least 1 week, the Thul can change the underlaying terrain to one of Uncorrupted Dungeonstone, Fertile Soil, Dimensionally Unstable or Plentiful Metal. Gain an additional Scrap each week"}},
+  { x: terraform, y: 2, name: "tf3", dependOn: ["Outpost"], elem: { desc: "", cost: 1, benefit: ""}},
+
+  { x: terraform+0.5, y: 3, name: "Wonder 4", dependOn: ["tf3","tesp3"], elem: { desc: "", cost: 1, benefit: ""}},
+
   { x: unknown+1, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Convert Base Resource into other at 5:4 rate"}},
   { x: unknown+2, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Efficiency gains of some sort"}},
 
 
-  { x: blood, y: 0, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Increase the amount of blood per hour of game by 1"}},
-  { x: blood, y: 2, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Can upgrade Pillars of Sacrifice into Big Pillars of Sacrifice. Costs twice as much as a Pillar and gives the same amount of blood again as a Pillar of Sacrifice."}},
-  { x: blood, y: 4, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Pillars gain +3 blood/week, big Pillars +6 blood/week"}},
-
-  { x: tesp, y: 0, name: "Espionage", dependOn: [], elem: { desc: "", cost: 1, benefit: "Players of at least Rep Rank 2 with Thul gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Nihilim means you gain 3 Blood for the faction instead of Soulstone/Mindsteel."}},
+  { x: tesp, y: 0, name: "Espionage", dependOn: [], elem: { desc: "", cost: 1, benefit: "Players of at least Rep Rank 2 with Thul gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Thul means you gain 3 Blood for the faction instead of Soulstone/Mindsteel."}},
   { x: tesp, y: 1, name: "", dependOn: ["Espionage"], elem: { desc: "", cost: 1, benefit: "When engaging in Espionage, whenever you would get reputation you may instead gain Thul Reputation"}},
+  { x: tesp, y: 2, name: "tesp3", dependOn: ["Espionage"], elem: { desc: "", cost: 1, benefit: "When engaging in Espionage, basic resources equal to the amount earned divided by playercount"}},
 
 
-  { x: pow, y: 1, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: "+1 to all production for the HQ"}},
-  { x: pow, y: 3, name: "Rite of Imbuement", dependOn: ["Rite of Empowerment"], elem: { desc: "SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: "+1 to all production  (other than weekly blood), +3 blood from Pillars of Sacrifice"}},
-  { x: pow, y: 5, name: "Rite of Elemental Perfection", dependOn: ["Rite of Imbuement"], elem: { desc: "Perfection is reached when the elemental energies are in a precise balance, always shfiting and changing but always in harmony. SPECIAL: Requires 3 technologies of the previous tech to be researched.", cost: 1, benefit: "+1 to all production, +3 blood from Pillars of Sacrifice"}},
+  { x: pow, y: 0.05, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 other technologies of the current tier to be researched.", cost: 1, benefit: "+1 to all production for the HQ"}},
+  { x: pow, y: 1.05, name: "Rite of Imbuement", dependOn: ["Rite of Empowerment"], elem: { desc: "SPECIAL: Requires 3 other technologies of the current tier to be researched.", cost: 1, benefit: "+1 to all production  (other than weekly blood), +3 blood from Pillars of Sacrifice"}},
+  { x: pow, y: 2.05, name: "Rite of Elemental Perfection", dependOn: ["Rite of Imbuement"], elem: { desc: "Perfection is reached when the elemental energies are in a precise balance, always shfiting and changing but always in harmony. SPECIAL: Requires 3 other technologies of the current tier to be researched.", cost: 1, benefit: "+1 to all production, +3 blood from Pillars of Sacrifice"}},
 /*
   { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
     { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
@@ -266,16 +283,29 @@ const thulInternal: TreeNode<{desc : string,
     { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
     { x: , y: , name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},
 */
-  { x: pow, y: 6, name: "Perpetual Renewal", dependOn: ["Rite of Elemental Perfection"], elem: { desc: "", cost: 1, benefit: "Pillars of sacrifice produce 5 blood/week. "}},
-  { x: pow, y: 7, name: "Eternal Now", dependOn: ["Perpetual Renewal"], elem: { desc: "", cost: 1, benefit: "After completing the [Murder the Gods and Topple Their Thrones] raid all divine influences are banished from Elysium and with them all stagnancy"}}
+  { x: pow, y: 3.05, name: "Perpetual Renewal", dependOn: ["Rite of Elemental Perfection"], elem: { desc: "", cost: 1, benefit: "Can Scrap any amount of Buildings per week. Scrapping recovers all resources. "}},
+  { x: pow, y: 4.05, name: "Eternal Now", dependOn: ["Perpetual Renewal"], elem: { desc: "SPECIAL: Requires 3 technologies of the PREVIOUS tier to be researched", cost: 1, benefit: "After completing the [Murder the Gods and Topple Their Thrones] raid all divine influences are banished from Elysium and with them all stagnancy"}}
 ]
 
 function fix (x : TreeNode<{desc : string,
   cost : number,
   benefit : string}>)  {
-    let elem = {name: x.name, ...x.elem}
-    let ret = {...x, elem}
-    return ret
+  let elem = {name: x.name, ...x.elem}
+  return {...x, elem}
+}
+
+function thulfix(y : TreeNode<{desc : string,
+  cost : number,
+  benefit : string}>) {
+  const x = {...y}
+  switch(x.y) {
+    case 1: x.dependOn.push("Rite of Empowerment")
+      break
+    case 2: x.dependOn.push("Rite of Imbuement")
+      break
+    case 3: x.dependOn.push("Rite of Elemental Perfections")
+  }
+  return x
 }
 
 const length_left = 12;
@@ -290,14 +320,14 @@ function printCosts(name : string, techs : TreeNode<{desc : string,
   benefit : string}>[]) {
   const sumCost = (x : TreeNode<{desc : string,
     cost : number,
-    benefit : string}>[]) => x.map(x => x.elem.cost).reduce((prev,cur) => prev+cur)
+    benefit : string}>[]) => x.map(x => x.elem.cost).reduce((prev,cur) => prev+cur,0)
 
   console.log("------------------------------------------------------")
   console.log(name+" total - len: "+techs.length+", cost: "+sumCost(techs))
 
   const max = Math.max(...techs.map(x => x.y))
   for(let i = 0; i <= max; i++) {
-    const tiertechs = techs.filter(x => x.y == i)
+    const tiertechs = techs.filter(x => Math.floor(x.y) == i)
     console.log(name+" tier "+i+"- len: "+tiertechs.length+", cost: "+sumCost(tiertechs)+", avg: "+(sumCost(tiertechs)/tiertechs.length))
   }
   console.log("------------------------------------------------------")
@@ -379,7 +409,7 @@ printCosts("cove",covenantInternal)
 printCosts("thul",thulInternal)
 export const nihilim = nihilimInternal.map(fix)
 export const covenant = covenantInternal.map(fix)
-export const thul = thulInternal.map(fix)
+export const thul = thulInternal.map(thulfix).map(fix)
 /*
 second sight
 
