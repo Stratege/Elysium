@@ -227,15 +227,15 @@ const blood = 2;
 const bloodrite = 4;
 const tesp = 6;
 const terraform = 5;
-const unknown = 7;
+//const unknown = 7;
 
 const rawpawtext = ""
 
-const thulInternal: TreeNode<{desc : string,
+let thulInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
   { x: war, y: 0, name: "Warfare", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
-  { x: war, y: 1, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex it can be exploited for 5 basic resources of any kind or 3 blood. An exploited does not provide weekly production for 2 weeks."}},
+  { x: war, y: 1, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex it can be exploited for 5 basic resources of any kind or 3 blood. An exploited hex does not provide weekly production for 2 weeks."}},
   { x: war, y: 2, name: "Forced March", dependOn: ["Spoils of War"], elem: { desc: "", cost: 1, benefit: "Reduce the cost increase of additional conquests from 5 to 3"}},
 
   { x: war+0.5, y: 3, name: "Wonder 1", dependOn: ["Forced March", "r3"], elem: { desc: "", cost: 1, benefit: ""}},
@@ -303,7 +303,7 @@ function thulfix(y : TreeNode<{desc : string,
       break
     case 2: x.dependOn.push("Rite of Imbuement")
       break
-    case 3: x.dependOn.push("Rite of Elemental Perfections")
+    case 3: x.dependOn.push("Rite of Elemental Perfection")
   }
   return x
 }
@@ -333,7 +333,7 @@ function printCosts(name : string, techs : TreeNode<{desc : string,
   console.log("------------------------------------------------------")
   const totals : number[] = []
   for(let i = 0; i <= max; i++) {
-    totals[i] = techs.filter(x => x.y == i).length
+    totals[i] = techs.filter(x => Math.floor(x.y) == i).length
   }
   let bestOnes: {name : string, value : number, candidate : number[]}[] = []
   function collectBestOnes(name : string, data : {value : number, candidate : number[]}) {
@@ -397,12 +397,14 @@ function cost_override(newCost : number[]) {
     cost : number,
     benefit : string}>) {
     const tech2 = {...tech}
-    tech2.elem.cost = tech.elem.cost != 1 ? tech.elem.cost : newCost[tech.y] ?? 0
+    tech2.elem.cost = tech.elem.cost != 1 ? tech.elem.cost : newCost[Math.floor(tech.y)] ?? 0
     return tech2
   }
 }
 nihilimInternal = nihilimInternal.map(cost_override([4,6,10,17,28,47,79,79]))
 covenantInternal = covenantInternal.map(cost_override([6,9,18,30,51]))
+thulInternal = thulInternal.map(cost_override([5,16,30,42,70]))
+//other thul options: [
 
 printCosts("nihi",nihilimInternal)
 printCosts("cove",covenantInternal)
