@@ -263,8 +263,8 @@ const thulInternal: TreeNode<{desc : string,
 
   { x: terraform+0.5, y: 3, name: "Wonder 4", dependOn: ["tf3","tesp3"], elem: { desc: "", cost: 1, benefit: ""}},
 
-  { x: unknown+1, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Convert Base Resource into other at 5:4 rate"}},
-  { x: unknown+2, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Efficiency gains of some sort"}},
+//  { x: unknown+1, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Convert Base Resource into other at 5:4 rate"}},
+//  { x: unknown+2, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Efficiency gains of some sort"}},
 
 
   { x: tesp, y: 0, name: "Espionage", dependOn: [], elem: { desc: "", cost: 1, benefit: "Players of at least Rep Rank 2 with Thul gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Thul means you gain 3 Blood for the faction instead of Soulstone/Mindsteel."}},
