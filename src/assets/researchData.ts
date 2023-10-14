@@ -86,7 +86,7 @@ const gov = 7
 let covenantInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
-  { x: dr, y: 0, name: "Recvover the Teachings", dependOn: [], elem: { desc: "", cost: 1, benefit: "+1 Faith/week for Chapel"}},
+  { x: dr, y: 0, name: "Recover the Teachings", dependOn: [], elem: { desc: "", cost: 1, benefit: "+1 Faith/week for Chapel"}},
   { x: dr, y: 1, name: "Divine Right", dependOn: ["Recvover the Teachings"], elem: { desc: "", cost: 1, benefit: "Unlock [Scrutators] which can be used to increase production of a single building by 50% (rounded up) and gain 1 Scrutator. "+preachertext}},
   { x: dr, y: 2, name: "Sacred Sites", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Can upgrade Chapel into [Church], this upgrade costs as much as building a Chapel and doubles weekly Faith production"}},
   { x: dr, y: 3, name: "Champions of the Faith", dependOn: ["Sacred Sites"], elem: { desc: "", cost: 1, benefit: prelateaviciatext + " Also unlocks the [Cathedral of Anointment], which allows PCs to become radiant spirits during their stay in Elysium."}},
@@ -219,6 +219,11 @@ Ancestry Transfer
 Expeditions (Patrols) - done
 Espionage - done
 Victory - done
+player bonuses
+units
+
+TODO: More Conquest related benefits. Conquest gives a special Conquest Point or something which can be expended on a variety of unlockable actions
+    => maybe rejigger some stuff for it. But choices = cool. Even if the choice itself isn't the biggest thing
  */
 const pow = 3;
 const war = 0;

@@ -2,8 +2,14 @@
 import {toMap} from "../util/helpers";
 import {TreeNode} from "../util/types";
 
-const props = withDefaults(defineProps<{nodes : TreeNode<T>[], w:number, h:number, d:number, color? : string}>(),{
-  color: "grey"
+const props = withDefaults(defineProps<{
+  nodes : TreeNode<T>[], w:number, h:number, d:number,
+  color? : string,
+  recolorNodes? : {[name : string] : boolean},
+  recoloredColor? : string,
+}>(),{
+  color: "grey",
+  recoloredColor : 'grey',
 })
 const xs = props.nodes.map(x => x.x)
 const ys = props.nodes.map(x => x.y)
@@ -47,7 +53,7 @@ console.log(lines)
     <line v-for="l in lines" :x1="l.x1+'px'" :y1="l.y1+'px'" :x2="l.x2+'px'" :y2="l.y2+'px'"></line>
   </svg>
   <template v-for="n in props.nodes">
-    <div :style="{top: yPos(n.y)+'px', left: xPos(n.x)+'px'}" class="node">
+    <div :style="{top: yPos(n.y)+'px', left: xPos(n.x)+'px'}" :class="'node' + ((props.recolorNodes && props.recolorNodes[n.name]) ? ' recolor' : '')">
       <slot name="node" v-bind="n.elem"/>
     </div>
   </template>
@@ -73,5 +79,8 @@ line{
   width: v-bind('wcss');
   height: v-bind('hcss');
   overflow: auto;
+}
+.node.recolor {
+  background-color: v-bind('props.recoloredColor');
 }
 </style>
