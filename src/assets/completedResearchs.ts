@@ -1,6 +1,6 @@
 
 export const completedNihiResearchs = toSet(["Gnosis Principles", "Scientific Approach", "Expectations of High Quality Outcomes via the Use of Logic", "Basic Tactics", "Superior Reflexes", "Gnosis Infused Materials"])
-export const completedCoveResearchs = toSet(["Recover the Teachings", "Divine Right"])
+export const completedCoveResearchs = toSet(["Recover the Teachings", "Divine Right","Defenders of Faith","Mandatory Service"])
 export const completedThulResearchs = toSet([])
 
 
