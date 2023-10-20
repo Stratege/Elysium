@@ -62,8 +62,9 @@ export const realEntries : {[x:string] : entry} = {
     note: 'Dragonspawn here. Available for anyone to run, but please ask'
   },
   "6,20": {
-    faction: 'Dungeon',
+    faction: 'Nihi',
     owningGM: 'Helian',
+    building: 'Barracks',
     note: 'Entrance of Possession\'s Domain',
   },
   "7,19": {
@@ -108,6 +109,18 @@ export const realEntries : {[x:string] : entry} = {
   "10,11": {
     faction: 'Dragon',
     note: 'Elias gaining The Dragon\'s Embrace',
+  },
+  "6,19": {
+    faction: 'Dungeon',
+    owningGM: 'Awesome',
+    terrain: "Plentiful Metal",
+    note: 'there is an unopened vault here'
+  },
+  "7,17": {
+    faction: 'Dungeon',
+    owningGM: 'Stratege',
+    terrain: "Fertile Soil",
+    note: 'a challenge undefeated left in this place inside of a mushroom forest'
   }
 }
 
