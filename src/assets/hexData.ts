@@ -125,7 +125,31 @@ export const realEntries : {[x:string] : entry} = {
     owningGM: 'Stratege',
     terrain: "Fertile Soil",
     note: 'a challenge undefeated left in this place inside of a mushroom forest'
-  }
+  },
+  "5,15": {
+    faction: 'PoE',
+    terrain: 'Leyline'
+  },
+  "10,15": {
+    faction: 'PoE',
+    terrain: 'Leyline'
+  },
+  "15,10": {
+    faction: 'PoE',
+    terrain: 'Leyline'
+  },
+  "5,10": {
+    faction: 'PoE',
+    terrain: 'Leyline'
+  },
+  "10,5": {
+    faction: 'PoE',
+    terrain: 'Leyline'
+  },
+  "15,5": {
+    faction: 'PoE',
+    terrain: 'Leyline'
+  },
 }
 
 Object.keys(realEntries).forEach(str => {

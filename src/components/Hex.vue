@@ -15,6 +15,7 @@ const claimedColorDict = {
   'Thul': 'firebrick',
   'Dragon': 'purple',
   'Dungeon': 'grey',
+  'PoE': 'grey',
   'GMOnly': 'white',
   'Unexplored': 'black',
   'isHighlighted': 'purple',
@@ -24,6 +25,7 @@ const buildingColorDict = {
   'Cove': 'gold',
   'Thul': 'red',
   'Dragon': 'purple',
+  'PoE': 'green',
   'Dungeon' : undefined,
 }
 let size = 50
@@ -41,7 +43,7 @@ if (props.highlightGM && (props.entry.owningGM === props.highlightGM)) {
   outercolorIndex = 'Unexplored'
 }
 let outercolor = claimedColorDict[outercolorIndex]
-let innercolor = (props.entry.building || props.entry.faction === 'Dragon' ? buildingColorDict[props.entry.faction] : null) ??'lightgrey'
+let innercolor = (props.entry.building || props.entry.faction === 'Dragon' || props.entry.faction == 'PoE' ? buildingColorDict[props.entry.faction] : null) ??'lightgrey'
 
 const offsetY = 50
 const offsetX = 0
@@ -58,7 +60,7 @@ let textcolor = buildingColorDict[props.entry.faction]
       {{entry.building ?? (entry.owningGM != null ? '' : cell.x+","+cell.y)}}
     </div>
     <template v-slot:tooltip>
-      <div class="ttline">Faction: {{entry.faction}}</div>
+      <div class="ttline">Faction: {{entry.faction == 'PoV' ? 'Dungeon' : entry.faction}}</div>
       <div class="ttline">Building: {{entry.building ?? 'None'}}</div>
       <div class="ttline">GM: {{entry.owningGM ?? 'None'}}</div>
       <div class="ttline">Terrain: {{entry.terrain ?? 'Unexplored'}}</div>
