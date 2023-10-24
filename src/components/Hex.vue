@@ -60,7 +60,7 @@ let textcolor = buildingColorDict[props.entry.faction]
       {{entry.building ?? (entry.owningGM != null ? '' : cell.x+","+cell.y)}}
     </div>
     <template v-slot:tooltip>
-      <div class="ttline">Faction: {{entry.faction == 'PoV' ? 'Dungeon' : entry.faction}}</div>
+      <div class="ttline">Faction: {{entry.faction == 'PoE' ? 'Dungeon' : entry.faction}}</div>
       <div class="ttline">Building: {{entry.building ?? 'None'}}</div>
       <div class="ttline">GM: {{entry.owningGM ?? 'None'}}</div>
       <div class="ttline">Terrain: {{entry.terrain ?? 'Unexplored'}}</div>
