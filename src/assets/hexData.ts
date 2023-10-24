@@ -152,6 +152,10 @@ export const realEntries : {[x:string] : entry} = {
     faction: 'PoE',
     terrain: 'Leyline'
   },
+  "4,19": {
+    faction: 'Dungeon',
+    owningGM: 'Stratege',
+  }
 }
 
 Object.keys(realEntries).forEach(str => {
