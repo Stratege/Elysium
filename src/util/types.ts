@@ -1,7 +1,7 @@
 type GM = 'Stratege' | 'Darthgorloc' | 'Minioris' | 'Helian' | 'Awesome'
 type Terrain = 'Dungeonstone' | 'Soil' | 'Leyline' | 'Fertile Soil' | 'Cryochambers' | 'Plentiful Metal' | 'Plentiful Dead' | 'Unexplored'
 type Faction = 'Nihi' | 'Cove' | 'Thul' | 'Dungeon' | 'Dragon' | 'PoE'
-type Building = 'HQ' | 'Forge' | 'Chapel' | 'Lab' | 'AC' | 'Barracks'
+type Building = 'HQ' | 'Forge' | 'Chapel' | 'Lab' | 'AC' | 'Barracks' | 'Scav. Yard' | 'Forest'
 type entry = {
   faction : Faction
   building?: Building

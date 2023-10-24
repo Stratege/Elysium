@@ -118,13 +118,15 @@ export const realEntries : {[x:string] : entry} = {
     faction: 'Dungeon',
     owningGM: 'Awesome',
     terrain: "Plentiful Metal",
-    note: 'there is an unopened vault here'
+    note: 'there is an unopened vault here',
+    building: 'Scav. Yard',
   },
   "7,17": {
     faction: 'Dungeon',
     owningGM: 'Stratege',
     terrain: "Fertile Soil",
-    note: 'a challenge undefeated left in this place inside of a mushroom forest'
+    note: 'a challenge undefeated left in this place inside of a mushroom forest',
+    building: 'Forest',
   },
   "5,15": {
     faction: 'PoE',
