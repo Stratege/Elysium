@@ -115,14 +115,14 @@ export const realEntries : {[x:string] : entry} = {
     note: 'Elias gaining The Dragon\'s Embrace',
   },
   "6,19": {
-    faction: 'Dungeon',
+    faction: 'Nihi',
     owningGM: 'Awesome',
     terrain: "Plentiful Metal",
     note: 'there is an unopened vault here',
     building: 'Scav. Yard',
   },
   "7,17": {
-    faction: 'Dungeon',
+    faction: 'Nihi',
     owningGM: 'Stratege',
     terrain: "Fertile Soil",
     note: 'a challenge undefeated left in this place inside of a mushroom forest',
