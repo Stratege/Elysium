@@ -1,6 +1,6 @@
 import type {TreeNode} from "../util/types";
 
-const whiptext = "You start with the [Whipping Sorrow] unlocked, a unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
+const whiptext = "The Nihilim start with the [Whipping Sorrow] unlocked, a unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
 const prosytext = "Add [Proselytes] to the military, a basic ranged unit that can be used with [Expeditions] where it costs 1 Military and collects 2 Gnosis";
 const mindbladetext = "Add [Mindblades] to the military, a controller/defender unit that can be used with [Expeditions] where it costs 1 Mindsteel and 2 Military and collects 3 of any basic resource";
 const ministerofpaintext = "Add [MoP] to the military, a controller/artillery unit that can be used with [Expeditions] where it costs 3 Military and collects 5 Gnosis"
@@ -30,7 +30,7 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: gp-1, y: 2, name: "Telekinses", dependOn: ["Telepathy"], elem: { desc: "", cost: 1, benefit: "Anytime a building is exactly 2 hexes from a building of the same type its output increases by 3. This does not stack with the benefits from Telepathy"}},
   { x: gp-2, y: 2, name: "Mindforging", dependOn: ["Telepathy","Expectations of High Quality Outcomes via the Use of Logic"], elem: { desc: "<see doc>", cost: 1, benefit: "All Nihilim gain a +2 faction bonus to Will saves. Steelsinger consumes 5 more metal/week and produces 5 more Mindsteel/week. "+mindbladetext}},
   { x: gp, y: 2, name: "Arcane Warfare", dependOn: ["Arcane Channeling"], elem: { desc: "", cost: 1, benefit: "Can now overcharge a unit type, making it produce 50% more resources this week but be unable to be deployed for the next 2 weeks afterwards. "+ministerofpaintext}},
-  { x: sa+1, y: 2, name: "Indoctrination", dependOn: ["Expectations of High Quality Outcomes via the Use of Logic"], elem: { desc: "<see doc>", cost: 1, benefit: ""+wraithtext}},
+  { x: sa+1, y: 2, name: "Efficiency Indoctrination", dependOn: ["Expectations of High Quality Outcomes via the Use of Logic"], elem: { desc: "Logic dictates the pursuit of efficiency in all endeauvers. The most efficient way to spread the pursuit of efficiency is indoctrination.", cost: 1, benefit: "Reduce the upkeep of any building by 40% (rounded up)"+wraithtext}},
   { x: sa-1, y: 2, name: "Coordinated Scrapping", dependOn: ["Calculated Efficiency"], elem: { desc: "", cost: 1, benefit: "+1 scrap/week"}},
   { x: bt, y: 2, name: "Military Discipline", dependOn: ["Calculated Efficiency","Basic Tactics"], elem: { desc: "<see doc>", cost: 1, benefit: "Whenever Military is expended, recover 40% (rounded down) after the Resource Allocation phase ends"}},
   { x: sa, y: 2, name: "Shift Planning", dependOn: ["Calculated Efficiency"], elem: { desc: "<see doc>", cost: 1, benefit: "When the Nihilim build a building they immediately gain the resources it would produce and can also use them in that same resource allocation phase (including for further buildings). Increase basic resource carrying capacity from games by 2 per hour"}},
@@ -39,11 +39,11 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: sa, y: 4, name: "Unified Labor", dependOn: ["Total Project Awareness"], elem: { desc: "<see doc>", cost: 1, benefit: "Buildings produce 50% more basic resources (after all other bonuses) if next to another basic resource producing building"}},
   { x: scry+1, y: 1, name: "Farscry", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "when scouting can instead declare a resource, terrain or theme and find a hex where it is abundant. Does NOT work for finding Leylines"}},
   { x: scry+1, y: 2, name: "Halls of Divination", dependOn: ["Scrying"], elem: { desc: "", cost: 1, benefit: "Unlocks [Halls of Divination], a building that allows 2 more Scryings per week"}},
-  { x: gp, y: 3, name: "Mystic Focus", dependOn: ["Arcane Warfare"], elem: { desc: "", cost: 1, benefit: ""}},
-  { x: gp, y: 4, name: "Gnosis Truths", dependOn: ["Mystic Focus"], elem: { desc: "", cost: 1, benefit: "Unlocks the [?], a wonder-type building that provides research benefits"}},
+  { x: gp, y: 3, name: "Mystic Focus", dependOn: ["Arcane Warfare"], elem: { desc: "", cost: 1, benefit: "Once per week may increase or decrease the distance or area counting of a singular building by 1 (e.g. One Lab's Telepathy can care about Range 1 or Range 3). Gnosis Weave Core can get upgraded with Meta Evaluation and Meta Efficiency once [Mind Transference] is researched."}},
+  { x: gp, y: 4, name: "Gnosis Truths", dependOn: ["Mystic Focus"], elem: { desc: "", cost: 1, benefit: "Unlocks the [Arcane Academy], a wonder-type building that provides research benefits"}},
   { x: sa-1, y: 4, name: "Scientific Treatment", dependOn: ["Total Project Awareness"], elem: { desc: "A detached analysis of the patient's illness and a willingness to do structured experiments for cures helps treat many things a lesser healer would consider fatal - even if it sometimes hastens death along in too severe cases.", cost: 1, benefit: "Once per session per player, if they would receive a minor defeat instead they don't. If Arcane Warfare is researched, also unlock "+atrocitustext}},
   { x: sa-1, y: 5, name: "Intistutionalized Medical Care", dependOn: ["Scientific Treatment"], elem: { desc: "Maybe it’s the lack of irrational emotions that turns the Nihilim into such technically skilled doctors. When knowledge increases in phase with technology, even death can be defeated. This knowledge will turn Nihilim doctors into excellent healers.", cost: 1, benefit: "Scientific Treatment benefit also applies to Major Defeats. Unlock [Surgery Halls], a wonder-type building that further boosts this benefit"}},
-  { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Indoctrination"], elem: { desc: "The toleration for the ones that doesn’t follow the code of the Nihilim indoctrination is weakening. Either the people choose the calculated and cold path that they once chose to walk, or they will be banished.", cost: 1, benefit: "Workers producing buildings (including HQ) produce -1 Worker per week. Any building producing basic resources or Gnosis increases such production by 3."+spectertext}},
+  { x: sa+1, y: 3, name: "Banish the Emotional", dependOn: ["Efficiency Indoctrination"], elem: { desc: "The toleration for the ones that doesn’t follow the code of the Nihilim Efficiency Indoctrination is weakening. Either the people choose the calculated and cold path that they once chose to walk, or they will be banished.", cost: 1, benefit: "Workers producing buildings (including HQ) produce -1 Worker per week. Any building producing basic resources or Gnosis increases such production by 3."+spectertext}},
   { x: gp-2, y: 4, name: "Mind Transference", dependOn: ["Monomind"], elem: { desc: "", cost: 1, benefit: "Unlock [Spire of Transference] a wonder-type building that allows PCs to transfer their minds into Automaton bodies for the stay in Elysium. Also allows customizing Gnosis Weave Buildings to increase their output and produce other outputs."}},
   { x: bt, y: 3, name: "Unequaled Stratagems", dependOn: ["Military Discipline"], elem: { desc: "<see doc>", cost: 1, benefit: "Increase the Military Recovery to 50% and gain it immediately. "+prefecttext}},
   { x: sa+2, y: 1, name: "Gnosis Infused Materials", dependOn: ["Scientific Approach",  "Gnosis Principles"], elem: { desc: "", cost: 1, benefit: "Non-HQ Buildings producing wood/metal/stone weekly gain +2 to each of those resources they already produce for each Lab adjacent to them"}},
@@ -68,7 +68,7 @@ let nihilimInternal: TreeNode<{desc : string,
   { x: 99, y: 99, name: "Mind Transference", dependOn: [], elem: { desc: "", cost: 1, benefit: ""}},*/
 ]
 
-const footmentext = "You start with the [Knight Exemplar] unlocked, a defender unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
+const footmentext = "The Covenant start with the [Knight Exemplar] unlocked, a defender unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
 const preachertext = "Unlock the [Preacher], a holy support unit which costs 1 Miliatry and  1 Faith to deploy and brings back 2 Basic Resources + 1 for each Defender unit on the same expedition"
 const longbowmentext = "Unlock the [Exemplar Harbinger], a ranged unit that costs 2 Military to deploy and brings back 2 Workers. In the following week, for each Exemplar Harbinger deployed, players can call in a volley strike once"
 const phalanxtext = "Unlock the [Exemplar Bastion], a defender unit that costs 3 Military to deploy and brings back 5 basic resources"
@@ -80,9 +80,9 @@ const knighttext = "Unlock the [Exemplar Vengers], a cavalry unit which costs 2 
 
 const dr = 2
 const mil = 0
-const rec = 4
-//const espc = 8
-const gov = 7
+const rec = 5
+const espc = 4
+const gov = 8
 let covenantInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
@@ -96,6 +96,9 @@ let covenantInternal: TreeNode<{desc : string,
   { x: dr+1, y: 2, name: "Priesthood", dependOn: ["Divine Right"], elem: { desc: "", cost: 1, benefit: "Gain +1 Scrutator"}},
   { x: dr+1, y: 3, name: "Mending Prayers", dependOn: ["Priesthood"], elem: { desc: "", cost: 25, benefit: "Once per session per player, if they would receive a minor defeat instead they don't."}},
   { x: dr+1, y: 4, name: "Miraculous Intervention", dependOn: ["Mending Prayers"], elem: { desc: "", cost: 40, benefit: "Mending Prayers benefit also applies to Major Defeats. Unlock the [Shield of Ramatos] wonder building, which further boosts this benefit"}},
+
+  { x: espc, y: 1, name: "Represent the Faith", dependOn: ["Recover the Teachings"], elem: { desc: "", cost: 1, benefit: "Players with at least Rep 2 with the Covenant may choose to represent them in non-Covenant games. When representing everytime you would gain non-Covenant rep instead you gain Covenant rep and instead of earning Mindsteel/Infused Wood the Covenant gain 2 Faith. Does not stack with Espionage benefits of other factions."}},
+  { x: espc, y: 3, name: "Divine Conversion", dependOn: ["Represent the Faith","Priesthood"], elem: { desc: "", cost: 1, benefit: ""}},
 
 
   { x: gov, y: 0, name: "Blessed Work", dependOn: [], elem: { desc: "", cost: 7, benefit: "Buildings producing basic resources gain +1 basic resource production/week"}},
@@ -115,7 +118,7 @@ let covenantInternal: TreeNode<{desc : string,
   { x: rec, y: 2, name: "Rapid Deployment", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "The first 4 Military spent on Expeditions each week is free. All Covenant get a Free Stride (or other speeds) for half their Speed at the start of combat."}},
   { x: rec+1, y: 2, name: "Expedition Camps", dependOn: ["Exploration"], elem: { desc: "", cost: 1, benefit: "Can construct an [Expedition Camp], a building that provides +2 Expeditions and +2 Scouting for any scouting action within 2 tiles. If the Expedition Camp is fully surrounded by friendly buildings it is automatically scrapped for a recovery of the full cost and without taking a scrapping action"}},
   { x: rec, y: 3, name: "Seek the Divine", dependOn: ["Rapid Deployment"], elem: { desc: "", cost: 1, benefit: "Expeditions have a 10% chance of finding a [Shard of Ramathos], needed for high level research and buildings. Sessions centered around searching for Ramatos can now also give a Shard of Ramatos"}},
-  { x: rec, y: 4, name: "Eyes of Ramatos", dependOn: ["Seek the Divine"], elem: { desc: "", cost: 1, benefit: "Allows constructing the [Eyes of Ramatos] a wonder building which reveals all hexes within a radius of 5 and in the same radius any Covenant has Perfect True Seeing, which works like True Seeing but automatically succeeds on all counteract checks against non-perfect effects"}},
+  { x: rec, y: 4, name: "Eyes of Ramatos", dependOn: ["Seek the Divine"], elem: { desc: "", cost: 1, benefit: "Allows constructing the [Eyes of Ramatos] a wonder building which automatically scouts and reveals all hexes within a radius of 5 and in the same radius any Covenant has Perfect True Seeing, which works like True Seeing but automatically succeeds on all counteract checks against non-perfect effects"}},
   { x: rec+1, y: 5, name: "The Awakening", dependOn: ["Seek the Divine"], elem: { desc: "Special: Requires the construction of at least 3 wonder buildings.", cost: 0, benefit: "Obtain the [Rites of Awakening]"}},
   { x: rec+1, y: 6, name: "Resurrection", dependOn: ["The Awakening"], elem: {desc: "Special: Requires [Rites of Awakening] to have been performed", cost: 0, benefit: "After completing the [Through the Gates of Hell] raid, Ramatos walks among his followers once more"}},
 
@@ -235,13 +238,19 @@ const tesp = 6;
 const terraform = 5;
 //const unknown = 7;
 
-const rawpawtext = ""
+const rawpawtext = "The Thul start with the [R] unlocked, a unit that costs 1 Military to deploy and brings back 2 of any basic Resource (players choice)."
+/*
+const bloodunittext = "Unlock [G] for [Expeditions], a unit that costs 1 military and brings back 2 blood"
+const workerunit = "Unlock Unit [W] for [Expeditions], cost 1 Military for 1 Worker, 1 basic resource"
+const ritualImbuement = "Increase the cost of all units by 100% but also increase what they bring back by 100%"
+const woodunit = ""
+*/
 
 let thulInternal: TreeNode<{desc : string,
   cost : number,
   benefit : string}>[] = [
   { x: war, y: 0, name: "Warfare", dependOn: [], elem: { desc: "", cost: 1, benefit: "Unlock [Conquest], allowing the faction to expend Military to conquer dungeon hexes. Cost starts at 5 Military and doubles for each hex conquered per week that way. (Each such hex needs to either be unclaimed or have the claiming GM agree to it being conquerable this way)"}},
-  { x: war, y: 1, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex it can be exploited for 5 basic resources of any kind or 3 blood. An exploited hex does not provide weekly production for 2 weeks."}},
+  { x: war, y: 1, name: "Spoils of War", dependOn: ["Warfare"], elem: { desc: "", cost: 1, benefit: "When conquering a hex it can be exploited for 8 basic resources of any kind or 6 blood. An exploited hex does not provide weekly production for 2 weeks."}},
   { x: war, y: 2, name: "Forced March", dependOn: ["Spoils of War"], elem: { desc: "", cost: 1, benefit: "Reduce the cost increase of additional conquests from 5 to 3"}},
 
   { x: war+0.5, y: 3, name: "Wonder 1", dependOn: ["Forced March", "r3"], elem: { desc: "", cost: 1, benefit: ""}},
@@ -256,18 +265,17 @@ let thulInternal: TreeNode<{desc : string,
   { x: blood, y: 1, name: "Big Pillars of Sacrifice", dependOn: ["Sacrifice Ritual"], elem: { desc: "", cost: 1, benefit: "Can upgrade Pillars of Sacrifice into Big Pillars of Sacrifice. Costs twice as much as a Pillar and gives the same amount of blood again as a Pillar of Sacrifice."}},
   { x: blood, y: 2, name: "Continuous Sacrifices", dependOn: ["Big Pillars of Sacrifice"], elem: { desc: "", cost: 1, benefit: "Pillars gain +3 blood/week, big Pillars +6 blood/week"}},
 
-
-  { x: bloodrite, y: 0, name: "br1", dependOn: [], elem: { desc: "", cost: 1, benefit: "At the start of a session may become drained 3 to gain the faction 2 blood if you do not suffer a major defeat during the session. This drained stacks with anything and can not be reduced during the session. The drained goes away at the end of session. The blood is seperate from the hourly blood cap."}},
+  { x: bloodrite, y: 0, name: "br1", dependOn: [], elem: { desc: "", cost: 1, benefit: "At the start of a session PCs may increase their drained by 3 to gain the faction 2 blood if they do not suffer a major defeat during the session. This drained stacks with anything and can not be reduced during the session. The drained goes away at the end of session. The choice and benefit is per PC. The blood is seperate from the hourly blood cap."}},
   { x: bloodrite, y: 1, name: "Prepare Site", dependOn: ["br1"], elem: { desc: "", cost: 1, benefit: "Once per session adventurers with at least Rep 2 with the Thul may ritualistically spread Blood on a hex they are in. Doing so costs 5 Blood from the current game, but transforms the hex into one suited for a Pillar of Sacrifice building."}},
   { x: bloodrite, y: 2, name: "br3", dependOn: ["Prepare Site"], elem: { desc: "", cost: 1, benefit: ""}},
 
-  { x: bloodrite+0.5, y: 3, name: "Wonder 3", dependOn: ["br3","tf3"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: bloodrite+0.5, y: 3, name: "Transcendent Cycle of Blood", dependOn: ["br3","Cycle of Nature"], elem: { desc: "", cost: 1, benefit: "Thul may now build the [Heartbeat of Nature] wonder."}},
 
   { x: terraform, y: 0, name: "Outpost", dependOn: [], elem: { desc: "", cost: 1, benefit: "Can build an [Outpost], a cheap building that automatically scouts an adjacent hex of choice. Every following week it scouts another adjacent hex to itself."}},
   { x: terraform, y: 1, name: "Cleansing", dependOn: ["Outpost"], elem: { desc: "", cost: 1, benefit: "When scrapping an Outpost that has stood for at least 1 week, the Thul can change the underlaying terrain to one of Uncorrupted Dungeonstone, Fertile Soil, Dimensionally Unstable or Plentiful Metal. Gain an additional Scrap each week"}},
-  { x: terraform, y: 2, name: "tf3", dependOn: ["Cleansing"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: terraform, y: 2, name: "Cycle of Nature", dependOn: ["Cleansing"], elem: { desc: "", cost: 1, benefit: "When a building is scrapped the cost of building a new building on that hex in the same resource allocation phase is dropped by half. Gain another scrap per week."}},
 
-  { x: terraform+0.5, y: 3, name: "Wonder 4", dependOn: ["tf3","Nature Envoy"], elem: { desc: "", cost: 1, benefit: ""}},
+  { x: terraform+0.5, y: 3, name: "Wonder 4", dependOn: ["Cycle of Nature","Nature Envoy"], elem: { desc: "", cost: 1, benefit: ""}},
 
 //  { x: unknown+1, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Convert Base Resource into other at 5:4 rate"}},
 //  { x: unknown+2, y: 1, name: "", dependOn: [], elem: { desc: "", cost: 1, benefit: "Efficiency gains of some sort"}},
@@ -275,7 +283,7 @@ let thulInternal: TreeNode<{desc : string,
 
   { x: tesp, y: 0, name: "Espionage", dependOn: [], elem: { desc: "", cost: 1, benefit: "Players of at least Rep Rank 2 with Thul gain access to [Espionage], allowing them to act as Spies while in other games. You can only be a spy for 1 faction at a time and never for the one that the game is for. Basic espionage for Thul means you gain 3 Blood for the faction instead of Soulstone/Mindsteel."}},
   { x: tesp, y: 1, name: "The Side of Nature", dependOn: ["Espionage"], elem: { desc: "", cost: 1, benefit: "When engaging in Espionage, whenever you would get reputation you may instead gain Thul Reputation"}},
-  { x: tesp, y: 2, name: "Nature Envoy", dependOn: ["The Side of Nature"], elem: { desc: "", cost: 1, benefit: "engaging in Espionage, the Thul gain an amount of basic resources equal to the amount earned divided by playercount"}},
+  { x: tesp, y: 2, name: "Nature Envoy", dependOn: ["The Side of Nature"], elem: { desc: "", cost: 1, benefit: "Engaging in Espionage, the Thul gain an amount of basic resources equal to the amount earned divided by playercount as well as 2 Military"}},
 
 
   { x: pow, y: 0.05, name: "Rite of Empowerment", dependOn: [], elem: { desc: "SPECIAL: Requires 3 other technologies of the current tier to be researched.", cost: 1, benefit: "+1 to all production for the HQ"}},
@@ -309,7 +317,7 @@ function thulfix(y : TreeNode<{desc : string,
       break
     case 2: x.dependOn.push("Rite of Imbuement")
       break
-    case 3: x.dependOn.push("Rite of Elemental Perfection")
+//    case 3: x.dependOn.push("Rite of Elemental Perfection")
   }
   return x
 }
@@ -482,7 +490,29 @@ mechanics:
  */
 
 /*
-Indoctrination    -
-Mystic Focus      -
 
+Gnosis Weave Core - 8 Stone, 15 Metal, 5 Mindsteel - Gain 5 Workers/week. With [Mind Transference] tech has 1 Slot for upgrades.
+  Add Slot - 10 Metal, 5 Mindsteel - Gain 2 Mindsteel/week upkeep, cost doubles for each additional slot (e.g. 3 additional slots have total of 2+4+6 => 12 Mindsteel/week upkeep)
+  Mindspace - 1 slot - +5 Workers/week
+  Meta Evaluation - Mystic Focus Tech, 1 slot, 10 Gnosis - -5 Workers/week, All labs within 2 hexes produce an additional 4 Gnosis/week
+  Simulated Resources - 1 slot, 5W, 5S, 5M - -5 Workers/week, 15 Basic Resources/week of choice
+  Virtual Command - 1 Slot, 5 Mindsteel - -5 Workers/week, increase the Military production of the faction per week by 33% (stacking additively)
+  Meta Efficiency - Mystic Focus Tech, 1 Slot - Reduce the upkeep of all upgrades of this Gnosis Weave Core by 30% (stacking additively, capped at 90%)
+Arcane Academy - 20W, 20S, 30M, 15 Gnosis, 5 Mindsteel, 5 Workers - Has same production as Lab. Counts as Lab for all other purposes too. Whenever two techs in the same row are researched immediately after each other within the same week, immediately get a research on the same row for free. Whenever you complete a full row with more than 1 tech in it, get a research from the next row for free.
+Spire of Transference - 30W, 30S, 30M, 15 Mindsteel - Players can achieve Rep 4 and anyone at Rep 4 plays in an Automaton body during their stay in Elysium.
+Surgery Halls - 25W, 25S, 25M, 15W, 10 Mindsteel - PCs can benefit from Scientific Treatment to remove Major Defeats twice per session and an indefinite amount of times for Minor Defeats. Any NPC/Creature with a mostly intact body that died within the last hour can be brought back to the Surgery Halls to be revived.
+Psychic Agency - 25W, 25S, 25M, 15W, 5Mil, 5 Mindsteel - Benefit from 1 tech the Covenant have unlocked and 1 tech the Thul have unlocked. Can switch which techs are chosen at the start of the Resource Allocation Phase.
+Pillar of Ascension - 40W, 40S, 40M, 20G, 20 Mindsteel, 5 Workers, Leyline hex - Required for [Deus ex Machina]
+
+Throne of Ramatos - ? - Scrutators now double resource production of a building, gain +1 Scrutator. Avicia now makes units produce 1  more of EVERY type they already produce instead. After Ezekius coqnuers a hex, immediately gain 8 resources (other than military) that a building on this hex could produce.
+Shield of Ramatos - ? - same as surgery halls
+Heart of Ramatos - ? - Every basic resource producing building adjacent to Heart of Ramatos gains the basic resource gains of every other such building adjacent to Heart of Ramatos
+Sword of Ramatos - ? - Every unit now also produces 1 faith and 1 military. 50% of Military expenditure is immediately regained as Workers. Can now start a [Crusade]. (TODO: Crusade mechanic?)
+Eyes of Ramatos - ? - See their text for benefit
+
+Thul Wonders 1-4
+
+Event: Contact!
+  - factions with border contact may now trade with each other. Resources, workers, military - even terrain (including potential buildings on them). However players want. After the Resource Allocation phase there is now a Diplomacy phase during which that happens.
+  - factions with border contact may now CLASH deploying armies against each other... mechanics TBD but if I find the time units can be bought and used in a border clash. Winner gets the involved enemy hex (including building). Border clash is played out with like fucking group vs group pvp using those units
  */
